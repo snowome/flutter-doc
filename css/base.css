@@ -27,3 +27,16 @@ input:-ms-input-placeholder { color: #c0c4cc; }
     height: 100%;
     overflow: hidden;
 }
+
+.weight {
+    font-weight: 700;
+}
+.danger {
+    color: #cf2828;
+}
+.margin-bottom-mini {
+    margin-bottom: 8px !important;
+}
+.text-indent {
+    text-indent: 2em;
+}

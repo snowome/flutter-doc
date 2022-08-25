@@ -5,18 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>Container组件</title>
+    <title>Container</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="../../css/page.css">
 </head>
 <body>
 <article class="weui-article">
-    <h1>构建flutter源生应用</h1>
-    <p style="text-indent: 2em; font-size: 20px">
-        Flutter是谷歌的移动UI框架，可以快速在iOS、Android、web上构建高质量的原生用户界面。 Flutter可以与现有的代码一起工作。在全世界，Flutter正在被越来越多的开发者和组织使用，并且Flutter是完全免费、开源的。
-    </p>
+    <h1>Container组件</h1>
+    <p>Container是Flutter里很常用的一个组件，类似于html中的div。</p>
+
+    <pre>
+<code>
+Container(
+    margin: EdgeInsets.all(10),
+    alignment: Alignment.center,
+    height: 100,
+    decoration: new BoxDecoration(
+        color: Colors.grey,
+        border: new Border.all(width: 2.0, color: Colors.red),
+        borderRadius: new BorderRadius.all(new Radius.circular(20.0)),
+        image: new DecorationImage(
+            image: new AssetImage('graphyics/face.jpg'),
+        ),
+    ),
+    child: Text('类似于html中的div'),
+),
+
+</code>
+    </pre>
+
+    <h2>属性</h2>
+    <ul>
+        <li>
+            <h4>● <b class="weight danger">width</b> 宽度，包含padding值。double，比如100</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">height</b> 高度，包含padding值。double，比如100</h4>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">padding</b> 内边距</h4>
+            <p class="margin-bottom-mini">例：四个方向都设定内边距为10</p>
+            <p>padding: EdgeInsets.all(10),</p>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">margin</b> 外边距</h4>
+            <p class="margin-bottom-mini">例：四个方向都设定外边距为10</p>
+            <p>margin: EdgeInsets.all(10),</p>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">alignment</b> child 对齐的属性，可以设置居中、居左、居右、居上、居下等等</h4>
+            <p>居中： alignment: Alignment.center,</p>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">decoration</b> 设置装饰器，比如边框、圆角、背景图片等。</h4>
+            <p>请见code</p>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">color</b> 背景颜色。</h4>
+            <p>例：设置背景颜色。color: Colors.red,</p>
+        </li>
+        <li>
+            <h4><b class="weight danger">注意：不能给 Container 同时设置 decoration 和 color 属性。</b>如果要设置，给decoration设置color就可以。</h4>
+            <p></p>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">transform</b> 变换效果，比如翻转、旋转、变形等</h4>
+            <p class="margin-bottom-mini">例：旋转</p>
+            <p>transform: Matrix4.rotationZ(0.1),</p>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">child</b> 子组件。</h4>
+            <p>例：child: Text('类似于html中的div'),</p>
+        </li>
+    </ul>
 </article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
 </body>
 </html>

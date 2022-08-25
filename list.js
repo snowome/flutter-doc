@@ -8,11 +8,11 @@ var list = {
             // [ "创建一个场景(Scene)", "html/Widgets/StatelessWidget/aaa", 1 ],
         ],
         "布局widget（单个子元素）": [
-            // ["Container", "html/布局指南/Container", 1],
-            // ["Opacity", "html/布局指南/Opacity", 1],        // 改变透明度
+            ["Container", "html/布局widget（单个子元素）/Container", 1],
+            ["Opacity", "html/布局widget（单个子元素）/Opacity", 1],
             ["Clipoval", "html/布局widget（单个子元素）/Clipoval", 1],
-            // ["ClipRRect", "html/布局指南/ClipRRect", 1],        // 将布局裁剪成方形
-            // ["PhysicalModel", "html/布局指南/ClipRRect", 1],        // 将布局显示成不同形状
+            ["ClipRRect", "html/布局widget（单个子元素）/ClipRRect", 1],
+            ["PhysicalModel", "html/布局widget（单个子元素）/PhysicalModel", 1],
             ["Align", "html/布局widget（单个子元素）/Align", 1],
             ["Center", "html/布局widget（单个子元素）/Center", 1],
             ["Padding", "html/布局widget（单个子元素）/Padding", 1],

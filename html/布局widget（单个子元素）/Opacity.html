@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>FractionallySizedBox</title>
+    <title>Opacity</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
@@ -15,35 +15,33 @@
 </head>
 <body>
 <article class="weui-article">
-    <h1>FractionallySizedBox组件</h1>
-    <p>将水平、垂直方向撑满整个屏幕，或者说百分比。约束他里边的布局能够撑多大。</p>
-
+    <h1>Opacity组件</h1>
+    <p>透明度组件</p>
     <pre>
 <code>
-Column(
-    children: [
-        FractionallySizedBox(
-            widthFactor: 1,
-            child: Container(
-                decoration: BoxDecoration(color: Colors.red),
-                child: Text('宽度撑满'),
-            ),
-        ),
-    ],
+Opacity(
+    opacity: 0.6,
+    child: Image.network(
+        'http://www.devio.org/img/avatar.png',
+        width: 100,
+        height: 100,
+    ),
 ),
 
 </code>
+
     </pre>
 
     <h2>属性</h2>
     <ul>
         <li>
-            <h4>● <b class="weight danger">widthFactor</b> 水平撑满百分比，1代表100%</h4>
-        </li>
-        <li>
-            <h4>● <b class="weight danger">heightFactor</b> 垂直撑满百分比，1代表100%<</h4>
+            <h4>● 透明度</h4>
+            <p class="margin-bottom-mini"><b class="weight danger">opacity</b>： double</p>
+            <p class="margin-bottom-mini">例：60%的透明度  opacity: 0.6,</p>
         </li>
     </ul>
+
+
 </article>
 <script src="../../lib/highlight/highlight.min.js"></script>
 <script src="../../lib/highlight/languages/dart.min.js"></script>

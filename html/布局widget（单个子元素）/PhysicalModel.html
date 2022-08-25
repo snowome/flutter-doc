@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>PhysicalModel</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>PhysicalModel组件</h1>
+    <p>可以将布局显示成不同的形状</p>
+<pre>
+<code>
+PhysicalModel(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        clipBehavior: Clip.antiAlias,
+        child: PageView(
+            children: [
+                _item('page1', Colors.purpleAccent),
+                _item('page2', Colors.orange),
+                _item('page3', Colors.blue),
+            ],
+        ),
+),
+
+_item(String title, Color color) {
+    return Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(color: color),
+        child: Text(
+            title,
+            style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
+    );
+}
+</code>
+</pre>
+
+    <h2>属性</h2>
+    <ul>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">shape</b> 设置裁剪形状，默认矩形</h4>
+            <p class="margin-bottom-mini">矩形： shape: BoxShape.rectangle,</p>
+            <p class="margin-bottom-mini">圆形： shape: BoxShape.circle,</p>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">color</b> 背景颜色，Color类型</h4>
+            <p class="margin-bottom-mini">Colors.transparent,</p>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">borderRadius</b> 圆角，BorderRadius类型</h4>
+            <p class="margin-bottom-mini">四个角都是10个数值的圆角 BorderRadius.all(Radius.circular(10));</p>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">clipBehavior</b> 设置裁剪行为</h4>
+            <p class="margin-bottom-mini">
+                不裁剪： Clip.none,
+            </p>
+            <p class="margin-bottom-mini">
+                有锯齿： Clip.hardEdge,
+            </p>
+            <p class="margin-bottom-mini">
+                抗锯齿： Clip.antiAlias,（默认）
+            </p>
+            <p class="margin-bottom-mini">
+                抗锯齿+保存图层： Clip.antiAliasWithSaveLayer
+            </p>
+        </li>
+        <li>
+            <h4 class="margin-bottom-mini">● <b class="weight danger">child</b> 子组件，Widget类型</h4>
+        </li>
+    </ul>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>
