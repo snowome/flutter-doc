@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+h1 {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    font-size: 25px;
+    font-weight: normal;
+}
+
+h2 {
+    color: #cf2828;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+h3 {
+    color: #1a1a1a;
+    font-size: 16px;
+    font-weight: bold;
+
+    margin-top: 16px;
+    margin-bottom: 8px;
+    margin-left: 20px;
+}
+
+a {
+    color: #2194CE;
+    text-decoration: none;
+}
+a.done:before{
+    content: '√';
+    padding-right: 10px;
+    color: green;
+}
+li a {
+    line-height: 1.42857143;
+}
+
+#panel {
+    position: fixed;
+    left: 0px;
+    width: 320px;
+    height: 100%;
+    overflow: auto;
+    background: #fafafa;
+    box-sizing: border-box;
+}
+
+#panel ul {
+    list-style-type: none;
+    padding: 0px;
+    margin-left: 20px;
+}
+
+#viewer {
+    position: absolute;
+    border: 0px;
+    left: 320px;
+    width: calc(100% - 320px);
+    height: 100%;
+    overflow: auto;
+}
+
+.filterBlock{
+    margin: 16px;
+    position: relative;
+}
+.filterBlock p {
+    margin: 0;
+}
+
+#filterInput {
+    width: 100%;
+    padding: 12px 8px;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    border: 1px solid #dedede;
+    box-sizing: border-box;
+}
+
+#filterInput:focus{
+    border: 1px solid #2194CE;
+}
+
+#clearFilterButton {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    margin-top: -8px;
+    width: 16px;
+    height: 16px;
+    font-size: 14px;
+    color: grey;
+    text-align: center;
+    line-height: 0;
+    padding-top: 7px;
+    opacity: .5;
+}
+
+#clearFilterButton:hover {
+    opacity: 1;
+}
+
+.filtered {
+    display: none;
+}
+
+#panel li b {
+    font-weight: bold;
+}

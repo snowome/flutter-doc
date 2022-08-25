@@ -1,22 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c6f6f0d-4b93-41f1-9895-7e198c66ca71" name="Default Changelist" comment="" />
+    <list default="true" id="354a367b-43b8-4d8d-8fda-f3aa33587d80" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="2DpmIX55QaKPBZjcQBX8Dm3OQX4" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Dq8kFirGAFFjxtVtVX6FidMjT2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/html/布局widget（单个子元素）" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\flutter-doc\html" />
+      <recent name="D:\flutter-doc\html\aaa" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\flutter-doc\html\布局widget（单个子元素）" />
+      <recent name="D:\flutter-doc\lib" />
+      <recent name="D:\flutter-doc\html\布局widget（多个子元素）" />
+      <recent name="D:\flutter-doc\html\布局指南" />
+      <recent name="D:\flutter-doc\html\Widgets\StatelessWidget" />
+    </key>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -35,16 +58,30 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9c6f6f0d-4b93-41f1-9895-7e198c66ca71" name="Default Changelist" comment="" />
-      <created>1661404320351</created>
+      <changelist id="354a367b-43b8-4d8d-8fda-f3aa33587d80" name="Default Changelist" comment="" />
+      <created>1661415395704</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1661404320351</updated>
-      <workItem from="1661404321585" duration="242000" />
+      <updated>1661415395704</updated>
+      <workItem from="1661415396964" duration="17738000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="333" y="108" key="#Inspections" timestamp="1661415445260">
+      <screen x="0" y="0" width="1680" height="1072" />
+    </state>
+    <state x="333" y="108" key="#Inspections/0.0.1680.1072@0.0.1680.1072" timestamp="1661415445260" />
+    <state x="571" y="231" key="FileChooserDialogImpl" timestamp="1661420360970">
+      <screen x="0" y="0" width="1680" height="1072" />
+    </state>
+    <state x="571" y="231" key="FileChooserDialogImpl/0.0.1680.1072@0.0.1680.1072" timestamp="1661420360970" />
+    <state x="435" y="332" width="775" height="643" key="find.popup" timestamp="1661434526075">
+      <screen x="0" y="0" width="1680" height="1072" />
+    </state>
+    <state x="435" y="332" width="775" height="643" key="find.popup/0.0.1680.1072@0.0.1680.1072" timestamp="1661434526075" />
   </component>
 </project>
