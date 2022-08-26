@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>路由和导航</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+<!--    <link rel="stylesheet" href="../../lib/highlight/styles/a11y-dark.min.css">-->
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>路由和导航</h1>
+
+    <h2>● 定义路由</h2>
+    <pre>
+<code class="language-dart">
+MaterialApp(
+    title: 'Flutter Demo',
+    theme: ThemeData(
+        primarySwatch: Colors.blue,
+    ),
+    home: Scaffold(
+        appBar: AppBar(
+            title: Text('路由与导航'),
+        ),
+        body: RouterNavigator(),
+    ),
+    // 定义路由
+    routes: &lt;String, WidgetBuilder&gt;{
+        // plugin、less、full、layout 这些是路由名称
+        'plugin': (BuildContext context) => PluginUse(),
+        'less': (BuildContext context) => LessGroupPage(),
+        'full': (BuildContext context) => StatefullGroup(),
+        'layout': (BuildContext context) => LayoutPage(),
+    },
+);
+</code>
+    </pre>
+
+    <h2>● 路由跳转</h2>
+    <pre>
+<code class="language-dart">
+class _routerNavigatorState extends State&lt;RouterNavigator&gt; {
+    bool byName = false; // true：通过路由名跳转，false：通过navagator直接跳转
+
+    @override
+    Widget build(BuildContext context) {
+        return Container(
+            child: Column(
+                children: [
+                    // 一个切换路由跳转方式的单选框switch
+                    SwitchListTile(
+                        title: Text('${byName ? '' : '不'}通过路由名跳转'),
+                        value: byName,
+                        onChanged: (value) {
+                            setState(() {
+                                byName = value;
+                            });
+                        },
+                    ),
+                    // 生成路由跳转的按钮
+                    _item('插件使用', PluginUse(), 'plugin'),
+                    _item('lessState组件', LessGroupPage(), 'less'),
+                    _item('fullState组件', StatefullGroup(), 'full'),
+                    _item('布局组件', LayoutPage(), 'layout'),
+                ],
+            ),
+        );
+    }
+
+    // 生成按钮的函数
+    Widget _item(String title, page, String routeName) {
+        return Container(
+            child: RaisedButton(
+                onPressed: () {
+                    // true：通过路由名跳转，false：通过navagator直接跳转
+                    if (byName) {
+                        Navigator.pushNamed(context, routeName);
+                    } else {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+                    }
+                },
+                child: Text(title),
+            ),
+        );
+    }
+}
+
+</code>
+    </pre>
+
+    <h2>● AppBar 路由返回</h2>
+    <pre>
+<code class="language-dart">
+appBar: AppBar(
+    title: Text('LayoutPage'),
+    leading: GestureDetector(
+        onTap: (){
+            // 路由返回页面
+            Navigator.pop(context);
+        },
+        child: Icon(Icons.arrow_back),
+    ),
+),
+
+</code>
+    </pre>
+
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

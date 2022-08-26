@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>BoxDecoration</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>BoxDecoration</h1>
+    <p>装饰器：BoxDecoration 继承自 Decoration。</p>
+    <pre>
+<code class="language-dart">
+BoxDecoration(
+    // 背景颜色
+    color: Colors.amber,
+    // 背景图片
+    image: DecorationImage(
+        image: NetworkImage('http://www.devio.org/img/avatar.png')
+    ),
+    // 边框
+    border: Border.all(width: 5.0, color: Colors.red),
+    // 边框圆角
+    borderRadius: BorderRadius.circular(36),
+    // 阴影
+    boxShadow: [
+        BoxShadow(
+            color: Colors.greenAccent.shade200,
+            offset: const Offset(5, 5),
+            blurRadius: 10.0,
+            spreadRadius: 20.0,
+        ),
+        BoxShadow(
+            color: Colors.yellow,
+            offset: const Offset(0, 0),
+            blurRadius: 0,
+            spreadRadius: 0,
+        ),
+    ],
+    // 渐变
+    gradient: LinearGradient(
+        begin: Alignment.topRight,
+        end: Alignment.bottomLeft,
+        colors: [Colors.blue, Colors.red],
+    ),
+    // 背景混合模式
+    backgroundBlendMode: BlendMode.exclusion,
+    // 形状
+    shape: BoxShape.rectangle,
+),
+
+</code>
+    </pre>
+
+    <h2>属性</h2>
+    <ul>
+        <li>
+            <h4>● <b class="weight danger">color：</b> 背景颜色，类型->Color。</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">image：</b> 背景图片，类型->DecorationImage</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">border：</b> 边框，类型->Border</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">borderRadius：</b> 边框圆角，类型->BorderRadius</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">boxShadow：</b> 阴影，类型->List&lt;BoxShadow&gt;</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">gradient：</b> 渐变，类型->LinearGradient->Gradient</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">backgroundBlendMode：</b> 背景混合模式，类型->BlendMode</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">shape：</b> 形状，类型->BoxShape</h4>
+        </li>
+    </ul>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

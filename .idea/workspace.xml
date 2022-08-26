@@ -25,20 +25,20 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/html/布局widget（单个子元素）" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/html/常用函数" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\flutter-doc\html\常用函数" />
+      <recent name="D:\flutter-doc\html\StateLessWidget" />
+      <recent name="D:\flutter-doc\html\StateFullWidget" />
+      <recent name="D:\flutter-doc\html\StatelessWidget" />
+      <recent name="D:\flutter-doc\html\StatelessWidget\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\flutter-doc\html" />
       <recent name="D:\flutter-doc\html\aaa" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\flutter-doc\html\布局widget（单个子元素）" />
-      <recent name="D:\flutter-doc\lib" />
-      <recent name="D:\flutter-doc\html\布局widget（多个子元素）" />
-      <recent name="D:\flutter-doc\html\布局指南" />
-      <recent name="D:\flutter-doc\html\Widgets\StatelessWidget" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -63,7 +63,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661415395704</updated>
-      <workItem from="1661415396964" duration="30567000" />
+      <workItem from="1661415396964" duration="41871000" />
+      <workItem from="1661485888059" duration="31198000" />
     </task>
     <servers />
   </component>
@@ -75,13 +76,13 @@
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
     <state x="333" y="108" key="#Inspections/0.0.1680.1072@0.0.1680.1072" timestamp="1661415445260" />
-    <state x="571" y="231" key="FileChooserDialogImpl" timestamp="1661439306261">
+    <state x="571" y="231" key="FileChooserDialogImpl" timestamp="1661460861153">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
-    <state x="571" y="231" key="FileChooserDialogImpl/0.0.1680.1072@0.0.1680.1072" timestamp="1661439306261" />
-    <state x="435" y="332" width="775" height="643" key="find.popup" timestamp="1661434526075">
+    <state x="571" y="231" key="FileChooserDialogImpl/0.0.1680.1072@0.0.1680.1072" timestamp="1661460861153" />
+    <state x="435" y="332" width="775" height="644" key="find.popup" timestamp="1661530469307">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
-    <state x="435" y="332" width="775" height="643" key="find.popup/0.0.1680.1072@0.0.1680.1072" timestamp="1661434526075" />
+    <state x="435" y="332" width="775" height="644" key="find.popup/0.0.1680.1072@0.0.1680.1072" timestamp="1661530469307" />
   </component>
 </project>

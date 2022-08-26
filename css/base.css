@@ -28,14 +28,22 @@ input:-ms-input-placeholder { color: #c0c4cc; }
     overflow: hidden;
 }
 
+a {
+    color: #2194CE;
+    text-decoration: none;
+}
+
 .weight {
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 .danger {
-    color: #cf2828;
+    color: #cf2828 !important;
 }
 .margin-bottom-mini {
     margin-bottom: 8px !important;
+}
+.margin-bottom-none {
+    margin-bottom: 0 !important;
 }
 .text-indent {
     text-indent: 2em;

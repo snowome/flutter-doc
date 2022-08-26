@@ -168,11 +168,24 @@ function goTo( section, category, name, member ) {
     viewer.src = pages[ section ][ category ][ name ] + '.html' + (!!member ? '#'+member : '');
 
     panel.classList.add( 'collapsed' );
+    linkActived(name);
+}
 
+function linkActived(name) {
+    var links = content.getElementsByClassName('done');
+    for(var item of links) {
+        var linksText = item.textContent;
+        if (linksText === name) {
+            if (!item.classList.contains('active')) {
+                item.classList.add('active')
+            }
+        } else {
+            item.classList.remove('active')
+        }
+    }
 }
 
 function goToHash() {
-
     var hash = window.location.hash.substring( 1 ).split(DELIMITER);
     var member = hash[2].split(MEMBER_DELIMITER)
     goTo( decodeUrl(hash[0]), decodeUrl(hash[1]), decodeUrl(member[0]), decodeUrl(member.length > 1 ? member[1] : '') );

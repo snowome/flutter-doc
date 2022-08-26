@@ -9,12 +9,41 @@
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="../../css/page.css">
 </head>
 <body>
 <article class="weui-article">
     <h1>Stack组件</h1>
     <p>可以允许其子widget简单的堆叠在一起。</p>
+    <p>一个 Positioned 的widget必须是 Stack 的子组件，且 Positioned 组件的作用是用来控制widget在 Stack 的位置。</p>
+    <pre>
+<code class="language-dart">
+Stack(
+    children: [
+        Image.network(
+            'http://www.devio.org/img/avatar.png',
+            width: 100,
+            height: 100,
+        ),
+        Positioned(
+            left: 0,
+            bottom: 0,
+            child: Image.network(
+                'http://www.devio.org/img/avatar.png',
+                width: 50,
+                height: 56,
+            ),
+        ),
+    ],
+),
+
+</code>
+    </pre>
 </article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
 </body>
 </html>

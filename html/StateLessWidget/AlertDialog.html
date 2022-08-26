@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>Padding</title>
+    <title>AlertDialog</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
@@ -15,29 +15,17 @@
 </head>
 <body>
 <article class="weui-article">
-    <h1>Padding组件</h1>
-    <p>一个widget, 会给其子widget添加指定的填充</p>
-<pre>
+    <h1>AlertDialog组件</h1>
+    <p>警告框</p>
+    <pre>
 <code class="language-dart">
-Padding(
-    padding: EdgeInsets.all(10),
-    child: Image.network(
-        'http://www.devio.org/img/avatar.png',
-        width: 100,
-        height: 100,
-    ),
-),
-</code>
-</pre>
+AlertDialog(
+    title: Text('弹框'),
+    content: Text('习近平指出，三十载沧海桑田，三十载春华利益和重大关切。'),
+)
 
-    <h2>属性</h2>
-    <ul>
-        <li>
-            <h4 class="margin-bottom-mini">● <b class="weight danger">padding</b> 内边距</h4>
-            <p class="margin-bottom-mini">例：四个方向都设定内边距为10</p>
-            <p>padding: EdgeInsets.all(10),</p>
-        </li>
-    </ul>
+</code>
+    </pre>
 </article>
 <script src="../../lib/highlight/highlight.min.js"></script>
 <script src="../../lib/highlight/languages/dart.min.js"></script>

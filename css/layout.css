@@ -27,15 +27,13 @@ h3 {
     margin-left: 20px;
 }
 
-a {
-    color: #2194CE;
-    text-decoration: none;
-}
+
 a.done:focus {
     color: #d4380d;
 }
-a.done:visited {
+a.done.active, a.done:visited {
     color: #d4380d;
+    font-weight: 700;
 }
 a.done:before{
     content: '√';
@@ -50,6 +48,7 @@ li a {
 #panel {
     position: fixed;
     left: 0px;
+    padding-bottom: 40px;
     width: 320px;
     height: 100%;
     overflow: auto;
