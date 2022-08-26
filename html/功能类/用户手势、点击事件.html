@@ -16,19 +16,53 @@
 <body>
 <article class="weui-article">
     <h1>用户手势、点击事件</h1>
-    <p>Expanded常用于Row, Column, Flex的子元素；</p>
-    <p>Expanded可以动态调整Expanded的子组件沿主轴的尺寸，比如设置尺寸比例、填充剩余空间。</p>
+
     <pre>
 <code class="language-dart">
-Column(
+Stack(
     children: [
-        Text('列表'),
-        Expanded(   // 填充剩余空间，这里 Container 填满了垂直方向的 Column 除去 Text('列表') 的空间。
-            child: Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(color: Colors.red),
-                child: Text('拉升填满高度'),
-            ),
+        Column(
+            children: [
+                // 用户点击事件
+                GestureDetector(
+                    onTap: () => _printMsg('点击'),
+                    onDoubleTap: () => _printMsg('双击'),
+                    onLongPress: () => _printMsg('长按'),
+                    onTapCancel: () => _printMsg('取消-手指离开了被点击范围。'),
+                    onTapUp: (e) => _printMsg('松开-手指没有离开被点击范围。'),
+                    onTapDown: (e) => _printMsg('按下'),
+                    child: Container(
+                        padding: const EdgeInsets.all(60),
+                        decoration: const BoxDecoration(color: Colors.blue),
+                        child: const Text(
+                            '点我',
+                            style: TextStyle(
+                                fontSize: 36,
+                                color: Colors.white,
+                            ),
+                        ),
+                    ),
+                ),
+                Text(printString),
+            ],
+        ),
+        // 用户手势->圆根据用户手指拖动的过程移动
+        Positioned(
+            left: moveX,
+            top: moveY,
+            child: GestureDetector(
+                // 手指拖动过程中
+                onPanUpdate: (e) => _doMove(e),
+                // 一个圆
+                child: Container(
+                    width: 72,
+                    height: 72,
+                    decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(36),
+                    ),
+                ),
+            )
         ),
     ],
 ),
