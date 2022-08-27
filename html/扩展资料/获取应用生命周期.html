@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>获取应用生命周期</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <!--    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">-->
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>获取应用生命周期</h1>
+    <p>后台就是切换到别的APP，前台就是切换到当前APP。</p>
+
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+
+class AppLife extends StatefulWidget {
+    const AppLife({Key? key}) : super(key: key);
+
+    @override
+    State&lt;AppLife&gt; createState() => _AppLifeState();
+}
+
+// WidgetsBindingObserver：是一个Widgets绑定观察器，通过它我们可以监听应用的生命周期、语言等的变化
+class _AppLifeState extends State&lt;AppLife&gt; with WidgetsBindingObserver {
+    @override
+    void initState() {
+        // 想要正确获取生命周期变化，需要在 initState 添加以下监听器
+        WidgetsBinding.instance.addObserver(this);
+
+        // TODO: implement initState
+        super.initState();
+    }
+
+    @override
+    Widget build(BuildContext context) {
+        return MaterialApp(
+            title: 'Flutter',
+            theme: ThemeData(
+                primarySwatch: Colors.blue,
+            ),
+            home: Scaffold(
+                appBar: AppBar(
+                      title: const Text('Flutter应用生命周期'),
+                      leading: const BackButton(),
+                ),
+                body: const Text('Flutter应用生命周期'),
+            ),
+        );
+    }
+
+    // 当 APP 的生命周期发生变化时，会回调这个方法。
+    @override
+    void didChangeAppLifecycleState(AppLifecycleState state) {
+        // TODO: implement didChangeAppLifecycleState
+        super.didChangeAppLifecycleState(state);
+
+        print('state = $state');
+        if (state == AppLifecycleState.paused) {
+            print('APP进入后台');
+        } else if (state == AppLifecycleState.resumed) {
+            print('APP进入前台');
+        } else if (state == AppLifecycleState.inactive) {
+            // 不常用：应用程序处于非活动状态，并且未接收用户输入时调用，比如：来了个电话
+        } else if (state == AppLifecycleState.detached) {
+            //不常用：应用程序被挂起时调用，它不会在iOS上触发
+        }
+    }
+
+    // 销毁 WidgetsBinding
+    @override
+    void dispose() {
+        WidgetsBinding.instance.removeObserver(this);
+        // TODO: implement dispose
+        super.dispose();
+    }
+}
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

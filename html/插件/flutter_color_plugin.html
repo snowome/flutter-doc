@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>Center</title>
+    <title>flutter_color_plugin</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
@@ -15,22 +15,20 @@
 </head>
 <body>
 <article class="weui-article">
-    <h1>Center组件</h1>
-    <p>将子元素居中显示。</p>
-
+    <h1>flutter_color_plugin</h1>
+    <p>Flutter的颜色解析包。</p>
+    <p>flutter_color_plugin: ^1.1.0</p>
     <pre>
 <code class="language-dart">
-Center(
-    child: Image(
-        width: 180,
-        height: 160,
-        image: AssetImage('images/avatar.png'),
-    ),
-),
+import 'package:flutter_color_plugin/flutter_color_plugin.dart';
+
+Color color1 = ColorUtil.color('#f2f2f2');
+Color color2 = ColorUtil.color('f2f2f2');
+print(color1 == color2); //true
+
 </code>
     </pre>
 </article>
-
 <script src="../../lib/highlight/highlight.min.js"></script>
 <script src="../../lib/highlight/languages/dart.min.js"></script>
 <script>hljs.highlightAll();</script>

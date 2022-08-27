@@ -51,6 +51,15 @@ var list = {
             ["EdgeInsets", "html/常用函数/EdgeInsets", 1],
             ["BoxDecoration", "html/常用函数/BoxDecoration", 1],
         ],
+        "插件": [
+            ["flutter-color-plugin", "html/插件/flutter_color_plugin", 1],
+            ["url-launcher", "html/插件/url_launcher", 1],
+        ],
+        "扩展资料": [
+            ["生命周期概述", "html/扩展资料/生命周期概述", 1],
+            ["获取应用生命周期", "html/扩展资料/获取应用生命周期", 1],
+            ["网址", "html/扩展资料/网址", 1],
+        ],
     },
 
     // "参考手册": {

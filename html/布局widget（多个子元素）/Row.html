@@ -19,9 +19,17 @@
 <article class="weui-article">
     <h1>Row组件</h1>
     <p>在水平方向上排列子widget的列表。</p>
+
+    <h3 class="margin-bottom-mini">说明</h3>
+    <ul>
+        <li>● MainAxisAlignment（主轴）就是与当前控件方向一致的轴，而CrossAxisAlignment（交叉轴）就是与当前控件方向垂直的轴。</li>
+        <li>● MainAxisAlignment是水平的，默认起始位置在左边，排列方向为从左至右，此时可以通过textDirection来改变MainAxisAlignment的起始位置和排列方向。</li>
+        <li>● CrossAxisAlignment是垂直的，默认起始位置在中间，排列方向为从上至下。此时可以通过verticalDirection来改变CrossAxisAlignment的起始位置及排列方向。</li>
+    </ul>
 <pre>
 <code class="language-dart">
 Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [],
 ),
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>url_launcher</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>url_launcher</h1>
+    <p>打开第三方应用的插件。</p>
+    <p>url_launcher: ^6.1.5</p>
+    <pre>
+<code class="language-dart">
+import 'package:url_launcher/url_launcher.dart';
+
+Scaffold(
+    appBar: AppBar(title: const Text('打开第三方应用')),
+    body: Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                ElevatedButton(onPressed: _launchUrl, child: const Text('用浏览器打开网址')),
+                ElevatedButton(onPressed: _launchMap, child: const Text('打开第三方APP')),
+            ],
+        ),
+    ),
+),
+
+// 用浏览器打开网址
+Future&lt;void&gt; _launchUrl() async {
+    final Uri url = Uri.parse('https://www.163.com/');
+    if (!await launchUrl(url)) {
+        throw 'Could not launch $url';
+    }
+}
+
+// 打开第三方APP
+Future<void> _launchMap() async {
+    // Android
+    const url = 'geo:53.32,4.917';    // APP提供者的schema
+    if (!await launchUrl(Uri.parse(url))) {
+        // IOS
+        // 苹果给地图提供了个url，通过这个url可以访问苹果手机里的地图软件
+        const url = 'http://maps.apple.com/?ll=52.32,4.17';
+        if (!await launchUrl(Uri.parse(url))) {
+            throw 'Could not launch $url';
+        }
+    }
+}
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

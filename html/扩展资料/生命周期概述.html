@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>生命周期概述</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+<!--    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">-->
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>生命周期概述</h1>
+    <ul>
+        <li><h3>一、StatelessWidget 只有 createElement、build 两个生命周期方法。</h3></li>
+        <li>
+            <h3>二、StatefulWidget：</h3>
+            <ol>
+                <li>1、初始化时期：createState、initState</li>
+                <li>2、更新期间：didChangeDependencies、build、didUpdateWidget</li>
+                <li>3、销毁期：deactivate、dispose</li>
+            </ol>
+        </li>
+    </ul>
+
+
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+
+class WidgetLife extends StatefulWidget {
+    const WidgetLife({Key? key}) : super(key: key);
+
+    // 当我们构建一个新的 StatefulWidget 时，createState 会立即调用。
+    // createState 这个方法必须被重写。
+    @override
+    State&lt;WidgetLife&gt; createState() => _WidgetLifeState();
+}
+
+class _WidgetLifeState extends State&lt;WidgetLife&gt; {
+    int _count = 0;
+
+    // 这是创建widget时调用的除构造方法外的第一个方法。
+    // 在这个方法中通常会做一些初始化工作，比如channel的初始化，监听器的初始化。
+    @override
+    void initState() {
+        print('-------initState--------');
+        // TODO: implement initState
+        super.initState();
+    }
+
+    // Widget 依赖的 State 对象改变的时候被调用：
+    // a、在第一次构建 Widget 时，在 initState() 之后立即调用此方法。
+    // b、如果 StatefulWidget 依赖于 InheritedWidget，
+    // 那么当 State 所依赖的 InheritedWidget 中的变量改变时会再次调用它。
+    // 拓展：InheritedWidget可以高效的将数据在Widget树中向下传递、共享。可参考：
+    // https://book.flutterchina.club/chapter7/inherited_widget.html
+    @override
+    void didChangeDependencies() {
+        print('---------didChangeDependencies-----------');
+        // TODO: implement didChangeDependencies
+        super.didChangeDependencies();
+    }
+
+    // 这是一个必须实现的方法，在这里实现你要呈现的页面内容：
+    // 它会在 didChangeDependencies() 之后立即调用。
+    // 另外当调用 setState 后也会再次调用该方法。
+    @override
+    Widget build(BuildContext context) {
+        print('----------build----------');
+        return MaterialApp(
+            title: 'Flutter',
+            theme: ThemeData(
+                primarySwatch: Colors.blue,
+            ),
+            home: Scaffold(
+                appBar: AppBar(
+                    title: Text('生命周期'),
+                    leading: BackButton(),
+                ),
+                body: Center(
+                    child: Column(
+                        children: [
+                            RaisedButton(
+                                onPressed: () {
+                                    setState(() {
+                                        _count++;
+                                    });
+                                },
+                                child: Text('点我', style: TextStyle(fontSize: 26)),
+                            ),
+                            Text(_count.toString())
+                        ],
+                    ),
+                ),
+            ),
+        );
+    }
+
+  // 这是一个不常用到的生命周期方法，当 父组件需要重绘 时才会调用；
+  // 该方法会携带一个oldWidget参数，可以将其与当前的widget进行对比以便执行一些额外的逻辑，如：
+  // if (oldWidget.xxx != widget.xxx)...
+  @override
+  void didUpdateWidget(covariant WidgetLife oldWidget) {
+    print('---------didUpdateWidget-----------');
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+  }
+
+  // 很少使用，在组件被移除时调用，在dispose之前调用。
+  @override
+  void deactivate() {
+    print('---------deactivate----------');
+    // TODO: implement deactivate
+    super.deactivate();
+  }
+
+  // 常用，组件被销毁时调用：
+  // 通常在该方法中执行一些资源的释放工作比如，监听器的卸载，channel的销毁等
+  @override
+  void dispose() {
+    print('--------dispose-----------');
+    // TODO: implement dispose
+    super.dispose();
+  }
+}
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>
