@@ -44,7 +44,7 @@ Future&lt;void&gt; _launchUrl() async {
 }
 
 // 打开第三方APP
-Future<void> _launchMap() async {
+Future&lt;void&gt; _launchMap() async {
     // Android
     const url = 'geo:53.32,4.917';    // APP提供者的schema
     if (!await launchUrl(Uri.parse(url))) {

@@ -48,3 +48,6 @@ a {
 .text-indent {
     text-indent: 2em;
 }
+.font-normal {
+    font-weight: normal !important;
+}
