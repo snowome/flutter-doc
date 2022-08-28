@@ -5,55 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>Image</title>
+    <title>showModalBottomSheet</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
     <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
-    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+<!--    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">-->
     <link rel="stylesheet" href="../../css/page.css">
 </head>
 <body>
 <article class="weui-article">
-    <h1>Image组件</h1>
-    <p>图片</p>
+    <h1>showModalBottomSheet</h1>
+    <p>底部弹框</p>
 
-<h2>本地图片</h2>
     <pre>
 <code class="language-dart">
-Image(
-    width: 180,
-    height: 160,
-    image: AssetImage('images/avatar.png'),
+Scaffold(
+    floatingActionButton: Builder(
+        builder: (context) => FloatingActionButton(
+            child: const Icon(Icons.add),
+            onPressed: () => _pickImage(context),       // _pickImage打开对话框
+        ),
+    ),
 ),
+
+_pickImage(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) => SizedBox(
+            height: 160,
+            child: Column(
+                children: [
+                    _item(context, '拍照', true),         // -item 是函数
+                    _item(context, '从相册选择', false),
+                ],
+            ),
+        ),
+    );
+}
 
 </code>
     </pre>
 
-    <h2>网络图片</h2>
-    <pre>
-<code class="language-dart">
-Image.network(
-    'http://www.devio.org/img/avatar.png',
-    width: 100,
-    height: 100,
-),
 
-</code>
-    </pre>
-
-    <h2>从文件获取图片</h2>
-    <pre>
-<code class="language-dart">
-Image.file(
-    File(file.path),            // file是一个变量
-    width: 120,
-    height: 90,
-    fit: BoxFit.fill,
-),
-
-</code>
-    </pre>
 </article>
 <script src="../../lib/highlight/highlight.min.js"></script>
 <script src="../../lib/highlight/languages/dart.min.js"></script>

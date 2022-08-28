@@ -11,6 +11,7 @@ var list = {
             ["Card", "html/StateLessWidget/Card", 1],
             ["AlertDialog", "html/StateLessWidget/AlertDialog", 1],
             ["FloatingActionButton", "html/StateLessWidget/FloatingActionButton", 1],
+            ["ListTile", "html/StateLessWidget/ListTile", 1],
         ],
         "StatefulWidget": [
             ["MaterialApp", "html/StateFullWidget/MaterialApp", 1],
@@ -39,8 +40,11 @@ var list = {
             ["Row", "html/布局widget（多个子元素）/Row", 1],
             ["Wrap", "html/布局widget（多个子元素）/Wrap", 1],
         ],
-        "ParentDataWidget": [
-            ["Expanded", "html/ParentDataWidget/Expanded", 1],
+        "响应式": [
+            ["Expanded", "html/响应式/Expanded", 1],
+        ],
+        "对话框": [
+            ["showModalBottomSheet", "html/对话框/showModalBottomSheet", 1],
         ],
         "功能类": [
             ["路由和导航", "html/功能类/路由和导航", 1],
@@ -50,10 +54,13 @@ var list = {
         "常用函数": [
             ["EdgeInsets", "html/常用函数/EdgeInsets", 1],
             ["BoxDecoration", "html/常用函数/BoxDecoration", 1],
+            ["ThemeData", "html/常用函数/ThemeData", 1],
         ],
         "插件": [
             ["flutter-color-plugin", "html/插件/flutter_color_plugin", 1],
             ["url-launcher", "html/插件/url_launcher", 1],
+            ["image-picker", "html/插件/image_picker", 1],
+
         ],
         "扩展资料": [
             ["数据类型", "html/扩展资料/数据类型", 1],

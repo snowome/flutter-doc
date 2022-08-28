@@ -25,20 +25,20 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/flutter/flutter_trip" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/html/StateLessWidget/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\flutter-doc\html" />
+      <recent name="D:\flutter-doc\html\aaa" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\flutter-doc\html\StateLessWidget\images" />
       <recent name="D:\flutter-doc\html\常用函数" />
       <recent name="D:\flutter-doc\html\StateLessWidget" />
       <recent name="D:\flutter-doc\html\StateFullWidget" />
       <recent name="D:\flutter-doc\html\StatelessWidget" />
-      <recent name="D:\flutter-doc\html\StatelessWidget\images" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\flutter-doc\html" />
-      <recent name="D:\flutter-doc\html\aaa" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -68,7 +68,10 @@
       <workItem from="1661562165250" duration="2547000" />
       <workItem from="1661578536725" duration="4297000" />
       <workItem from="1661594015719" duration="209000" />
-      <workItem from="1661594696927" duration="14880000" />
+      <workItem from="1661594696927" duration="15484000" />
+      <workItem from="1661665907067" duration="2057000" />
+      <workItem from="1661670548216" duration="1900000" />
+      <workItem from="1661677100215" duration="7704000" />
     </task>
     <servers />
   </component>
@@ -80,13 +83,13 @@
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
     <state x="333" y="108" key="#Inspections/0.0.1680.1072@0.0.1680.1072" timestamp="1661415445260" />
-    <state x="571" y="231" key="FileChooserDialogImpl" timestamp="1661594031914">
+    <state x="571" y="231" key="FileChooserDialogImpl" timestamp="1661707245121">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
-    <state x="571" y="231" key="FileChooserDialogImpl/0.0.1680.1072@0.0.1680.1072" timestamp="1661594031914" />
-    <state x="435" y="332" width="775" height="644" key="find.popup" timestamp="1661530469307">
+    <state x="571" y="231" key="FileChooserDialogImpl/0.0.1680.1072@0.0.1680.1072" timestamp="1661707245121" />
+    <state x="435" y="332" width="777" height="644" key="find.popup" timestamp="1661705969110">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
-    <state x="435" y="332" width="775" height="644" key="find.popup/0.0.1680.1072@0.0.1680.1072" timestamp="1661530469307" />
+    <state x="435" y="332" width="777" height="644" key="find.popup/0.0.1680.1072@0.0.1680.1072" timestamp="1661705969110" />
   </component>
 </project>

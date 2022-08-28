@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>ThemeData</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+<!--    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">-->
+        <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>ThemeData</h1>
+
+    <p>设定主题颜色</p>
+
+    <pre>
+<code class="language-dart">
+ThemeData(
+    fontFamily: 'RubikMonoOne',         // pubspec.yaml文件里设定的family名字
+    brightness: Brightness.light,,
+    primarySwatch: Colors.red,
+),
+
+</code>
+    </pre>
+
+    <h2>属性</h2>
+    <ul>
+        <li>
+            <h4>● <b class="weight danger">fontFamily：</b> 字体。类型->String。</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">brightness：</b> 日间模式、夜间模式 的切换，类型->Brightness。</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">primarySwatch：</b> App主要部分的背景色（AppBar、ToolBar、TabBar等），类型->Colors</h4>
+        </li>
+    </ul>
+
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

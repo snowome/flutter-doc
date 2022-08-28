@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>MaterialApp</title>
+    <title>ListTile</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
@@ -15,34 +15,22 @@
 </head>
 <body>
 <article class="weui-article">
-    <h1>MaterialApp组件</h1>
-    <p>MaterialApp是Flutter开发中最常用的符合Material Design（原质化设计）设计理念的入口Widget，它里面封装了应用程序实现Material Design所需要的一些基本组件。</p>
-    <p>通常放在页面里的根节点。</p>
+    <h1>ListTile</h1>
+    <p>一个固定高度的行，通常包含一些文本，以及一个行前或行尾图标。</p>
+
     <pre>
 <code class="language-dart">
-@override
-Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'StateFullWidget',           // 标题
-        theme: ThemeData(                   // 主题
-            primarySwatch: Colors.blue,
-        ),
-        home: Scaffold(                     // 整个页面
-
-        ),
-    );
-}
+ListTile(
+    leading: Icons.camera_alt,
+    title: Text(title),
+    onTap: () => getImage(context, isPhoto),        // 函数
+)
 
 </code>
     </pre>
 
-    <h2>属性</h2>
-    <ul>
-        <li>
-            <h4>● <b class="weight danger">theme</b> 主题颜色</h4>
-            <p>请见 <a href="../常用函数/ThemeData.html" target="_self">常用函数->ThemeData</a></p>
-        </li>
-    </ul>
+    <h2>组件例子</h2>
+    <img src="./images/ListTile.png" width="400" alt="ListTile">
 </article>
 <script src="../../lib/highlight/highlight.min.js"></script>
 <script src="../../lib/highlight/languages/dart.min.js"></script>
