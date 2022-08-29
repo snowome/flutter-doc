@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>path_provider</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>path_provider</h1>
+    <p>获取手机应用程序路径</p>
+    <p>path_provider: ^2.0.11</p>
+    <pre>
+<code class="language-dart">
+import 'package:path_provider/path_provider.dart';
+
+// 获取手机应用程序路径
+Future&lt;String&gt; _getAppDir() async {
+    Directory appDir = await getApplicationDocumentsDirectory();
+    String appPath = appDir.path;
+    return appPath;
+}
+// 获得手机临时路径
+Future&lt;String&gt; _getTempDirectory() async {
+    Directory tempDir = await getTemporaryDirectory();
+    String tempPath = tempDir.path;
+    return tempPath;
+}
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

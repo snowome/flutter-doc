@@ -60,7 +60,8 @@ var list = {
             ["flutter-color-plugin", "html/插件/flutter_color_plugin", 1],
             ["url-launcher", "html/插件/url_launcher", 1],
             ["image-picker", "html/插件/image_picker", 1],
-
+            ["path-provider", "html/插件/path_provider", 1],
+            ["cached-network-image", "html/插件/cached_network_image", 1],
         ],
         "扩展资料": [
             ["数据类型", "html/扩展资料/数据类型", 1],

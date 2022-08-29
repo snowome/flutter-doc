@@ -18,7 +18,7 @@
     <h1>Image组件</h1>
     <p>图片</p>
 
-<h2>本地图片</h2>
+    <h2>使用key 从AssetBundle获得的图像</h2>
     <pre>
 <code class="language-dart">
 Image(
@@ -26,6 +26,11 @@ Image(
     height: 160,
     image: AssetImage('images/avatar.png'),
 ),
+Image.asset(
+    'images/avatar.png',
+    width: 26,
+    height: 26,
+)
 
 </code>
     </pre>
@@ -42,14 +47,46 @@ Image.network(
 </code>
     </pre>
 
-    <h2>从文件获取图片</h2>
+    <h2>从本地文件中获取图片，绝对路径</h2>
     <pre>
 <code class="language-dart">
+import 'dart:io';
 Image.file(
-    File(file.path),            // file是一个变量
+    File(file.path),                        // file是一个变量
+    File('/sdcard/Download/Stack.png'),     // 完整路径，手机的sd卡下的图片，sdcard在不同手机上的前缀不一样。
     width: 120,
     height: 90,
     fit: BoxFit.fill,
+),
+
+</code>
+    </pre>
+
+    <h2>网络图片加载占位符</h2>
+    <pre>
+<code class="language-dart">
+import 'package:transparent_image/transparent_image.dart';          // transparent_image: ^2.0.0
+Stack(
+    children: [
+        // 圆形的进度指示器
+        Center(
+            child: CircularProgressIndicator(),
+        ),
+        // 淡入的从内存中加载图片
+        Center(
+            child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,  // transparent_image 插件提供
+                image: 'http://www.devio.org/img/avatar.png',
+            ),
+        ),
+        // 首先加载一张本地图片，等网络图片加载显示出来后，隐藏本地图片
+        Center(
+            child: FadeInImage.assetNetwork(
+                placeholder: 'images/loading.png',
+                image: 'http://www.devio.org/img/avatar.png',
+            ),
+        ),
+    ],
 ),
 
 </code>

@@ -25,7 +25,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/html/StateLessWidget/images" />
+    <property name="last_opened_file_path" value="E:/flutter/flutter_trip" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
@@ -71,7 +71,8 @@
       <workItem from="1661594696927" duration="15484000" />
       <workItem from="1661665907067" duration="2057000" />
       <workItem from="1661670548216" duration="1900000" />
-      <workItem from="1661677100215" duration="7704000" />
+      <workItem from="1661677100215" duration="7961000" />
+      <workItem from="1661744947932" duration="11214000" />
     </task>
     <servers />
   </component>
@@ -83,10 +84,10 @@
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
     <state x="333" y="108" key="#Inspections/0.0.1680.1072@0.0.1680.1072" timestamp="1661415445260" />
-    <state x="571" y="231" key="FileChooserDialogImpl" timestamp="1661707245121">
+    <state x="571" y="231" key="FileChooserDialogImpl" timestamp="1661772614507">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
-    <state x="571" y="231" key="FileChooserDialogImpl/0.0.1680.1072@0.0.1680.1072" timestamp="1661707245121" />
+    <state x="571" y="231" key="FileChooserDialogImpl/0.0.1680.1072@0.0.1680.1072" timestamp="1661772614507" />
     <state x="435" y="332" width="777" height="644" key="find.popup" timestamp="1661705969110">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
