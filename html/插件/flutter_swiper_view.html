@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>flutter_swiper_view</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>flutter_swiper_view</h1>
+    <p>轮播图插件</p>
+    <p>flutter_swiper_view: ^1.1.8</p>
+
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State&lt;HomePage&gt; createState() => _HomePageState();
+}
+
+class _HomePageState extends State&lt;HomePage&gt; {
+  final List _imageUrls = [
+    'http://cms-bucket.ws.126.net/2022/0901/d1d3addep00rhisdc0166c000ak0057c.png?imageView&thumbnail=453y225&quality=85&type=webp',
+    'http://cms-bucket.ws.126.net/2022/0901/372d1bcdj00rhidko0027c000cl0069c.jpg?imageView&thumbnail=453y225&quality=85&type=webp',
+    'http://cms-bucket.ws.126.net/2022/0901/d4408951j00rhitup001oc000s600e3c.jpg?imageView&thumbnail=453y225&quality=85&type=webp',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 160,
+              child: Swiper(
+                itemBuilder: (context, index) {
+                  return Image.network(
+                    _imageUrls[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+                itemCount: _imageUrls.length,
+                autoplay: true,
+                pagination: const SwiperPagination(),
+                control: const SwiperControl(
+                  color: Color.fromRGBO(255, 255, 255, 0.5),
+                  size: 30,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>
