@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>AnimatedWidget</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>AnimatedWidget</h1>
+    <p>我们可以将AnimatedWidget理解为Animation的助手，使用它可以简化我们对动画的使用，</p>
+    <p>在不使用AnimatedWidget的情况下需要手动调用动画的addListener()并在回调中添加setState才能看到动画效果，AnimatedWidget将为我们简化这一操作。</p>
+
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const LogoApp());
+}
+
+class LogoApp extends StatefulWidget {
+  const LogoApp({Key? key}) : super(key: key);
+
+  @override
+  State&lt;LogoApp&gt; createState() => _LogoAppState();
+}
+
+class AnimatedLogo extends AnimatedWidget {
+  const AnimatedLogo({Key? key, required Animation&lt;double&gt; animation}) : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    final Animation&lt;double&gt; animation = listenable as Animation&lt;double&gt;
+
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        width: animation.value,
+        height: animation.value,
+        child: const FlutterLogo(),
+      ),
+    );
+  }
+}
+
+class _LogoAppState extends State&lt;LogoApp&gt; with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation&lt;double&gt; curve;
+  late Animation&lt;double&gt; animation;
+
+  @override
+  void initState() {
+    super.initState();
+    // 防止屏幕外动画消耗不必要的资源，可以将stateful对象作为vsync的值
+    controller = AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    curve = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    animation = Tween&lt;double&gt;(begin: 0, end: 300).animate(curve);
+    controller.forward();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // 销毁
+    controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '动画',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('动画'),
+        ),
+        body: AnimatedLogo(
+          animation: animation,
+        ),
+      ),
+    );
+  }
+}
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -17,15 +17,23 @@
 <article class="weui-article">
     <h1>ThemeData</h1>
 
-    <p>设定主题颜色</p>
-
+    <h2>设定主题颜色</h2>
     <pre>
 <code class="language-dart">
 ThemeData(
     fontFamily: 'RubikMonoOne',         // pubspec.yaml文件里设定的family名字
-    brightness: Brightness.light,,
+    brightness: Brightness.light,
+    primaryColor: Color.blue,
     primarySwatch: Colors.red,
 ),
+
+</code>
+    </pre>
+
+    <h2>Widget 取主题颜色的值</h2>
+    <pre>
+<code class="language-dart">
+color: Theme.of(context).primaryColor.withOpacity(0.25),
 
 </code>
     </pre>
@@ -39,7 +47,10 @@ ThemeData(
             <h4>● <b class="weight danger">brightness：</b> 日间模式、夜间模式 的切换，类型->Brightness。</h4>
         </li>
         <li>
-            <h4>● <b class="weight danger">primarySwatch：</b> App主要部分的背景色（AppBar、ToolBar、TabBar等），类型->Colors</h4>
+            <h4>● <b class="weight danger">primaryColor：</b> App基色，类型->Color</h4>
+        </li>
+        <li>
+            <h4>● <b class="weight danger">primarySwatch：</b> App一些Widget的颜色（AppBar、ToolBar、TabBar等），类型->MaterialColor</h4>
         </li>
     </ul>
 

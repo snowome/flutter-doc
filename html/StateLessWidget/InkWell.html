@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>InkWell</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>InkWell</h1>
+    <p>InkWell组件在用户点击时出现“水波纹”效果</p>
+    <pre>
+<code class="language-dart">
+InkWell(
+    onTap: (){},
+    splashColor: Colors.red,                // 水波纹的颜色
+    highlightColor: Colors.blue,            // 高亮颜色是按住时显示的颜色
+    child: Text('这是InkWell点击效果'),
+)
+</code>
+    </pre>
+
+    <p>
+        <b class="weight danger">说明：</b>
+        给字体添加边距和圆角边框，扩大“水波纹”效果，如下。发现“水波纹”超出的了圆角边框，如何解决这个问题呢？
+        请使用：<a href="">Ink</a>
+    </p>
+    <pre>
+<code class="language-dart">
+InkWell(
+    onTap: (){},
+    child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 8),
+        decoration: BoxDecoration(
+            border:Border.all(color: Colors.blue),
+            borderRadius: BorderRadius.all(Radius.circular(30))
+        ),
+        child: Text('这是InkWell点击效果'),
+    ),
+)
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

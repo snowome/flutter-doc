@@ -31,7 +31,7 @@ h3 {
 a.done:focus {
     color: #d4380d;
 }
-a.done.active, a.done:visited {
+a.done.active {
     color: #d4380d;
     font-weight: 700;
 }

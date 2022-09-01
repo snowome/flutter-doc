@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>EdgeInsets</title>
+    <title>Ink</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
@@ -15,28 +15,30 @@
 </head>
 <body>
 <article class="weui-article">
-    <h1>EdgeInsets</h1>
-    <p>设定四个方向中每个方向上的偏移量</p>
-    <p>通常用于盒子的四个边的偏移，例如，内边距、外边距等。</p>
+    <h1>Ink</h1>
+    <p>Ink控件用于在[Material]控件上绘制图像和其他装饰，以便[InkWell]、[InkResponse]控件的“水波纹”效果在其上面显示。</p>
     <pre>
 <code class="language-dart">
-Container(
-    height: 100,
-
-    margin: EdgeInsets.only(top: 10),               // 上
-    margin: EdgeInsets.only(left: 10),              // 左
-    margin: EdgeInsets.only(bottom: 10),            // 下
-    margin: EdgeInsets.only(right: 10),             // 右
-
-    margin: EdgeInsets.all(10),                     // 上下左右四个边
-
-    margin: EdgeInsets.fromLTRB(5, 10, 10, 0),      // 分别设定四个边
-
-    // 可以指定垂直和水平方向的边距
-    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-
-),
-
+Ink(
+    decoration: BoxDecoration(
+        gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color(0xFFDE2F21), Color(0xFFEC592F)]
+    ),
+    borderRadius: BorderRadius.all(Radius.circular(20))),
+    child: InkWell(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+            child: Text(
+                '这是InkWell的点击效果',
+                style: TextStyle(color: Colors.white),
+            ),
+        ),
+        onTap: () {},
+    ),
+)
 </code>
     </pre>
 </article>

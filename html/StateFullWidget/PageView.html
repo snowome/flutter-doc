@@ -19,26 +19,30 @@
     <p>轮播图、左右滑动切换视图</p>
     <pre>
 <code class="language-dart">
-Container(
-    height: 100,
-    margin: EdgeInsets.only(top: 10),
-    decoration: BoxDecoration(color: Colors.red),
-    child: PageView(
-        children: [
-            _item('page1', Colors.purpleAccent),
-            _item('page2', Colors.orange),
-            _item('page3', Colors.blue),
-        ],
-    ),
-),
+final PageController _controller = PageController(
+    // 初始打开哪个页面
+    initialPage: 0,
+);
+// _controller.jumpToPage(index);            // PageView页面跳转方法
 
-_item(String title, Color color) {
-    return Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(color: color),
-        child: Text(title, style: TextStyle(fontSize: 20, color: Colors.white), ),
-    );
-}
+PageView(
+    // PageView的控制类
+    controller: _controller,
+    // 页面切换时调用
+    onPageChanged: (index) {},
+    children: [],
+    // 滚动的方向
+    scrollDirection: Axis.horizontal,
+    // 手势滚动逻辑：如下：
+    // 不滚动：const NeverScrollableScrollPhysics(),
+    // 总是滚动（默认）：const AlwaysScrollableScrollPhysics(),
+    // 滚动到边缘时是否有bounce：const BouncingScrollPhysics(),
+    physics: const AlwaysScrollableScrollPhysics(),
+    // 设置为false禁用页面捕捉，对自定义滚动行为很有用。
+    pageSnapping: true,
+    // 是否反向滚动
+    reverse: false,
+),
 
 </code>
     </pre>

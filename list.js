@@ -12,6 +12,9 @@ var list = {
             ["AlertDialog", "html/StateLessWidget/AlertDialog", 1],
             ["FloatingActionButton", "html/StateLessWidget/FloatingActionButton", 1],
             ["ListTile", "html/StateLessWidget/ListTile", 1],
+            ["InkWell", "html/StateLessWidget/InkWell", 1],
+            ["Ink", "html/StateLessWidget/Ink", 1],
+
         ],
         "StatefulWidget": [
             ["MaterialApp", "html/StateFullWidget/MaterialApp", 1],
@@ -55,6 +58,12 @@ var list = {
             ["EdgeInsets", "html/常用函数/EdgeInsets", 1],
             ["BoxDecoration", "html/常用函数/BoxDecoration", 1],
             ["ThemeData", "html/常用函数/ThemeData", 1],
+        ],
+        "动画": [
+            ["动画基础类", "html/动画/动画基础类", 1],
+            ["AnimatedWidget", "html/动画/AnimatedWidget", 1],
+            ["AnimatedBuilder", "html/动画/AnimatedBuilder", 1],
+
         ],
         "插件": [
             ["flutter-color-plugin", "html/插件/flutter_color_plugin", 1],
