@@ -17,6 +17,11 @@
 <article class="weui-article">
     <h1>BoxDecoration</h1>
     <p>装饰器：BoxDecoration 继承自 Decoration。</p>
+    <p>
+        有时候，视图分为两层，装饰器在下边那层，所以
+        <span class="weight danger">BoxDecoration.borderRadius 不起作用</span>。
+        这时候应该采用：<a href="../布局widget（单个子元素）/PhysicalModel.html">PhysicalModel</a>。
+    </p>
     <pre>
 <code class="language-dart">
 BoxDecoration(
@@ -28,6 +33,7 @@ BoxDecoration(
     ),
     // 边框
     border: Border.all(width: 5.0, color: Colors.red),
+    // border: Border(left: BorderSide(width: 0.8, color: Colors.white)),
     // 边框圆角
     borderRadius: BorderRadius.circular(36),
     // 阴影

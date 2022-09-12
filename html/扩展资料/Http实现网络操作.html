@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Http实现网络操作</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>Http实现网络操作</h1>
+
+    <p>
+        Future与FutureBuilder：
+        <a href="https://coding.imooc.com/learn/questiondetail/134645.html" target="_blank">参考网址</a>
+    </p>
+    <p>http: ^0.13.5</p>
+    <p>JSON转换为dart：<a href="https://www.devio.org/io/tools/json-to-dart/" target="_blank">json-to-dart</a></p>
+    <p>使用插件将JSON转换为dart：json_serializable、built_value</p>
+
+    <pre>
+<code class="language-dart">
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class HttpApp extends StatefulWidget {
+  const HttpApp({Key? key}) : super(key: key);
+
+  @override
+  State&lt;HttpApp&gt; createState() => _HttpAppState();
+}
+
+class _HttpAppState extends State&lt;HttpApp&gt; {
+  String showResult = '';
+
+  Future&lt;CommonModel&gt; fetchPost() async {
+    final Uri url = Uri.parse('http://www.devio.org/io/flutter_app/json/test_common_model.json');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+        // final result = jsonDecode(response.body);      // 有中文乱码
+        Utf8Decoder utf8decoder = const Utf8Decoder();    // fix 中文乱码
+        final result = jsonDecode(utf8decoder.convert(response.bodyBytes));   // jsonDecode 需要 import 'dart:convert';
+        return CommonModel.formJson(result);
+    } else {
+      throw Exception('Failed to load home_page.json');
+    }
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(title: const Text('http请求')),
+          body: FutureBuilder&lt;CommonModel&gt;(
+            future: fetchPost(),
+            builder: (BuildContext context, AsyncSnapshot&lt;CommonModel&gt; snapshot) {
+              switch (snapshot.connectionState) {
+                // 未执行
+                case ConnectionState.none:
+                  return const Text('Input a url to start');
+                // 已连接，正在执行
+                case ConnectionState.waiting:
+                  return const Center(child: CircularProgressIndicator());
+                // 正在传输数据
+                case ConnectionState.active:
+                  return const Text('');
+                // 网络请求结束
+                case ConnectionState.done:
+                  if (snapshot.hasError) {
+                    return Text('${snapshot.error}', style: const TextStyle(color: Colors.red));
+                  } else {
+                    return Column(
+                      children: [
+                        Text('icon:${snapshot.data?.icon}'),
+                        Text('statusBarColor:${snapshot.data?.statusBarColor}'),
+                        Text('title:${snapshot.data?.title}'),
+                        Text('url:${snapshot.data?.url}')
+                      ],
+                    );
+                  }
+              }
+            },
+          )),
+    );
+  }
+}
+
+// JSON解析为dart支持的数据模型
+class CommonModel {
+  final String? icon;
+  final String? title;
+  final String? url;
+  final String? statusBarColor;
+  final bool? hideAppBar;
+
+  CommonModel({this.icon, this.title, this.url, this.statusBarColor, this.hideAppBar});
+
+  factory CommonModel.formJson(Map&lt;String, dynamic&gt; json) {
+    return CommonModel(
+      icon: json['icon'],
+      title: json['title'],
+      url: json['url'],
+      statusBarColor: json['statusBarColor'],
+      hideAppBar: json['hideAppBar'],
+    );
+  }
+}
+
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

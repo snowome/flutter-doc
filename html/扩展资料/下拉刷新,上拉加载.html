@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>下拉刷新,上拉加载</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>下拉刷新,上拉加载</h1>
+    <p>在Flutter中有一个RefreshIndicator，它是一个下拉刷新的widget，通过它我们可以实现列表的下拉刷新。</p>
+    <p>为了给列表添加上了加载更多的功能，我们可以借助ScrollController，ListView支持设置controller参数，通过ScrollController监听列表滚动的位置，来实现加载更多的功能。</p>
+
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+
+class ListApp extends StatefulWidget {
+  const ListApp({Key? key}) : super(key: key);
+
+  @override
+  State&lt;ListApp&gt; createState() => _ListAppState();
+}
+
+class _ListAppState extends State&lt;ListApp&gt; {
+  List&lt;String&gt; cityNames = ['北京', '上海', '广州', '深圳', '杭州', '苏州', '成都', '武汉', '郑州', '洛阳', '厦门', '青岛', '拉萨'];
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      // 滚动的位置 >= 最大滚动位置，说明滚动到底部了
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent) {
+        _loadMore();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.red,
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(title: const Text('下拉刷新，上拉加载')),
+        body: RefreshIndicator(
+          onRefresh: _handleRefresh,          // 下拉刷新
+          child: ListView(
+            controller: _scrollController,    // 加载更多
+            children: _buildList(),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future&lt;void&gt; _handleRefresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      cityNames = cityNames.reversed.toList();
+    });
+  }
+
+  Future&lt;void&gt; _loadMore() async {
+    await Future.delayed(const Duration(microseconds: 200));
+    setState(() {
+      List&lt;String&gt; list = List&lt;String&gt;.from(cityNames);
+      cityNames.addAll(list);
+    });
+  }
+
+  List&lt;Widget&gt; _buildList() {
+    return cityNames.map((city) => _item(city)).toList();
+  }
+
+  Widget _item(String city) {
+    return Container(
+      height: 80,
+      margin: const EdgeInsets.only(bottom: 5),
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(color: Colors.orange),
+      child: Text(city, style: const TextStyle(color: Colors.white, fontSize: 20)),
+    );
+  }
+
+}
+
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

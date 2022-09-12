@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Flutter与Native通信</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>Flutter与Native通信</h1>
+
+    <h2>Flutter和Native混合开发</h2>
+    <ul>
+        <li>● 首先进入安卓项目的父目录，运行如下命令建立flutter模块。和安卓、IOS项目同级。</li>
+        <li>● 创建支持 AndroidX 的 flutter_module：flutter create --androidx -t module flutter_module</li>
+        <li>● 创建不支持 AndroidX 的 flutter_module：flutter create -t module flutter_module</li>
+    </ul>
+
+    <h2>Flutter通信机制：定义了三种不同类型的Channel：</h2>
+    <p></p>
+    <p>需要引入：import 'package:flutter/services.dart';</p>
+    <ul>
+        <li>
+            <p>● <span class="weight">BasicMessageChannel：</span>用于传递字符串和半结构化的信息，持续通信，收到消息后可以回复此次消息，如：Native将遍历到的文件信息陆续传递到Dart，在比如：Flutter将从服务端陆陆续获取到信息交个Native加工，Native处理完返回等；</p>
+            <p>const BasicMessageChannel(this.name, this.codec);</p>
+            <p>String name - Channel的名字，要和Native端保持一致；</p>
+            <p>MessageCodec&lt;T&gt; codec - 消息的编解码器，要和Native端保持一致，</p>
+        </li>
+        <li>
+            <p>● <span class="weight">MethodChannel：</span>用于传递方法调用，一次性通信：如 Flutter 调用 Native 拍照；</p>
+            <p>const MethodChannel(this.name, [this.codec = const StandardMethodCodec()]);</p>
+            <p>String name - Channel的名字，要和Native端保持一致；</p>
+            <p>MethodCodec codec - 消息的编解码器，默认是StandardMethodCodec，要和Native端保持一致；</p>
+        </li>
+        <li>
+            <p>● <span class="weight">EventChannel：</span>用于数据流（event streams）的通信，持续通信，收到消息后无法回复此次消息，通过长用于Native向Dart的通信，如：手机电量变化，网络连接变化，陀螺仪，传感器等；</p>
+            <p>const EventChannel(this.name, [this.codec = const StandardMethodCodec()]);</p>
+            <p>String name - Channel的名字，要和Native端保持一致；</p>
+            <p>MethodCodec codec - 消息的编解码器，默认是StandardMethodCodec，要和Native端保持一致；</p>
+        </li>
+    </ul>
+
+    <h2>消息的编解码器</h2>
+    <ul>
+        <li>● <span class="weight">BinaryCodec</span> - 最为简单的一种Codec，因为其返回值类型和入参的类型相同，均为二进制格式（Android中为ByteBuffer，iOS中为NSData）。实际上，BinaryCodec在编解码过程中什么都没做，只是原封不动将二进制数据消息返回而已。或许你会因此觉得BinaryCodec没有意义，但是在某些情况下它非常有用，比如使用BinaryCodec可以使传递内存数据块时在编解码阶段免于内存拷贝；</li>
+        <li>● <span class="weight">StringCodec</span> - 用于字符串与二进制数据之间的编解码，其编码格式为UTF-8；</li>
+        <li>● <span class="weight">JSONMessageCodec</span> - 用于基础数据与二进制数据之间的编解码，其支持基础数据类型以及列表、字典。其在iOS端使用了NSJSONSerialization作为序列化的工具，而在Android端则使用了其自定义的JSONUtil与StringCodec作为序列化工具；</li>
+        <li>● <span class="weight">StandardMessageCodec</span> - 是BasicMessageChannel的默认编解码器，其支持基础数据类型、二进制数据、列表、字典，其工作原理；</li>
+    </ul>
+
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+import 'dart:ui';
+import 'dart:async';
+import 'package:flutter/services.dart';
+
+void main() {
+  runApp(MyApp(
+    // Native调用flutter传递过来的参数。window对象需要：import 'dart:ui';
+    initParams: window.defaultRouteName,
+  ));
+}
+
+class MyApp extends StatelessWidget {
+  final String initParams;
+
+  const MyApp({Key? key, required this.initParams}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '通信机制',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter通信机制', initParams: initParams),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  final String title;
+  final String initParams;
+
+  const MyHomePage({Key? key, required this.title, required this.initParams}) : super(key: key);
+
+  @override
+  State&lt;MyHomePage&gt; createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  // BasicMessageChannel 通信，这里的泛型&lt;String&gt;是接收的数据类型，因为是String，所以用StringCodec解码器
+  static const BasicMessageChannel&lt;String&gt; _basicMessageChannel = BasicMessageChannel('BasicMessageChannelPlugin', StringCodec());
+
+  // MethodChannel 通信
+  static const MethodChannel _methodChannelPlugin = MethodChannel('MethodChannelPlugin');
+
+  // EventChannel 通信
+  static const EventChannel _eventChannelPlugin = EventChannel('EventChannelPlugin');
+  // 用于销毁 EventChannel 通信 的 listen。需要引入：import 'dart:async';
+  StreamSubscription? _streamSubscription;
+
+  // 接收 Native 传递过来的额消息
+  String showMessage = '';
+
+  // 是否采用 MethodChannelPlugin
+  bool _isMethodChannelPlugin = false;
+
+  @override
+  void initState() {
+    // BasicMessageChannel 接受来自 Native 的消息，并向 Native 回复。
+    _basicMessageChannel.setMessageHandler((String? message) => Future&lt;String&gt;(() {
+          setState(() {
+            showMessage = 'BasicMessageChannel：${message!}';
+          });
+          return '收到消息：${message!}';
+        }));
+
+    // EventChannel 接收来自 Native 的消息。 '123' 是传送给 Native 的，它是可以接收到的，根据需要传递。
+    _streamSubscription = _eventChannelPlugin.receiveBroadcastStream('123').listen(_onToDart, onError: _onToDartError);
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // 销毁 EventChannel 通信 的 listen。
+    if (_streamSubscription != null) {
+      _streamSubscription?.cancel();
+      _streamSubscription = null;
+    }
+    super.dispose();
+  }
+
+  void _onToDart(message) {
+    setState(() {
+      showMessage = message;
+    });
+  }
+
+  void _onToDartError(error) {
+    print(error);
+  }
+
+  void _onTextChange(value) async {
+    String? response;
+    try {
+      if (_isMethodChannelPlugin) {
+        // 使用 MethodChannel 向 Native 发送消息，并接受Native的回复
+        response = await _methodChannelPlugin.invokeMethod('send', value);
+      } else {
+        // 使用 BasicMessageChannel 向 Native 发送消息，并接受Native的回复
+        response = await _basicMessageChannel.send(value);
+      }
+    } on PlatformException catch (e) {
+      print(e);
+    }
+  }
+
+  void _onChanelChanged(bool value) => setState(() => _isMethodChannelPlugin = value);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Container(
+        alignment: Alignment.topLeft,
+        margin: const EdgeInsets.only(top: 70),
+        decoration: const BoxDecoration(color: Colors.blueGrey),
+        child: Column(
+          children: [
+            Text(
+              '收到初始参数initParams：${widget.initParams}',
+              style: const TextStyle(fontSize: 20),
+            ),
+            SwitchListTile(
+              value: _isMethodChannelPlugin,
+              onChanged: _onChanelChanged,
+              title: Text(_isMethodChannelPlugin ? 'MethodChannelPlugin' : 'BasicMessageChannelPlugin'),
+            ),
+            TextField(
+              onChanged: _onTextChange,
+              decoration: const InputDecoration(
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white))),
+            ),
+            Text(
+              'Native传来的数据：$showMessage',
+              style: const TextStyle(fontSize: 20),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

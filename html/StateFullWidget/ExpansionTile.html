@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>ExpansionTile</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>ExpansionTile</h1>
+    <p>可展开的列表</p>
+
+    <pre>
+<code class="language-dart">
+const ExpansionTile({
+    Key key,
+    this.leading,//标题左侧要展示的widget
+    @required this.title,//要展示的标题widget
+    this.backgroundColor,//背景
+    this.onExpansionChanged,//列表展开收起的回调函数
+    this.children = const &lt;Widget&gt;[],//列表展开时显示的widget
+    this.trailing,//标题有侧要展示的widget
+    this.initiallyExpanded = false,//是否默认状态下展开
+})
+
+</code>
+    </pre>
+
+
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+
+const cityNames = {
+  '北京': ['东城区', '西城区', '朝阳区', '丰台区', '石景山区', '海淀区', '顺义区'],
+  '上海': ['黄浦区', '徐汇区', '长宁区', '静安区', '普陀区', '闸北区', '虹口区'],
+  '广州': ['越秀', '海珠', '荔湾', '天河', '白云', '黄埔', '南沙', '番禺'],
+  '深圳': ['南山', '福田', '罗湖', '盐田', '龙岗', '宝安', '龙华'],
+  '杭州': ['上城区', '下城区', '江干区', '拱墅区', '西湖区', '滨江区'],
+  '苏州': ['姑苏区', '吴中区', '相城区', '高新区', '虎丘区', '工业园区', '吴江区']
+};
+
+class ListApp extends StatefulWidget {
+  const ListApp({Key? key}) : super(key: key);
+
+  @override
+  State&lt;ListApp&gt; createState() => _ListAppState();
+}
+
+class _ListAppState extends State&lt;ListApp&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.red,
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(title: const Text('可展开的列表')),
+        body: ListView(
+          children: _buildList(),
+        ),
+      ),
+    );
+  }
+
+  List&lt;Widget&gt; _buildList() {
+    List&lt;Widget&gt; widgets = [];
+    for (var key in cityNames.keys) {
+      widgets.add(_item(key, cityNames[key]!));
+    }
+    return widgets;
+  }
+
+  Widget _item(String city, List&lt;String&gt; subCitys) {
+    return ExpansionTile(
+      title: Text(city, style: const TextStyle(color: Colors.black54, fontSize: 20)),
+      children: subCitys.map((subCity) => _buildSub(subCity)).toList(),
+    );
+  }
+
+  Widget _buildSub(String subCity) {
+    return FractionallySizedBox(
+      widthFactor: 1,
+      child: Container(
+        height: 50,
+        margin: const EdgeInsets.only(bottom: 5),
+        decoration: const BoxDecoration(color: Colors.lightBlueAccent),
+        child: Text(subCity),
+      ),
+    );
+  }
+}
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

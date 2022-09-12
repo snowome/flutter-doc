@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>ListView</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>ListView</h1>
+    <p>在Flutter中，用ListView来显示列表项，支持垂直和水平方向展示，通过一个属性我们就可以控制其方向。</p>
+    <pre>
+<code class="language-dart">
+// NotificationListener 是监听列表滚动的类
+NotificationListener(
+    onNotification: (scroll) {
+        // ScrollStartNotification 开始滚动
+        // ScrollUpdateNotification 正在滚动
+        // ScrollEndNotification 滚动停止
+        // OverscrollNotification 滚动到边界
+        // scroll.depth == 0 意思是不判断子元素（例如子元素的轮播图一直在滚动）
+        if (scroll is ScrollUpdateNotification && scroll.depth == 0) {
+          _onScroll(scroll.metrics.pixels);
+        }
+        return false;   // onNotification函数要求有一个返回值，这里无含义
+    },
+    child: ListView(
+        // scrollDirection: Axis.horizontal, // 水平滚动
+        // controller: ScrollController,    // 用于加载更多
+        children: [
+            SizedBox(
+                height: 160,
+                child: Swiper(),
+            ),
+            const SizedBox(
+                height: 1300,
+                child: ListTile(
+                    title: Text('啊哈'),
+                ),
+            ),
+        ],
+    ),
+)
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

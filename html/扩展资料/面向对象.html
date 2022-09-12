@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>面向对象</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>面向对象</h1>
+
+    <h3>一、所有的类都继承自Object。</h3>
+    <pre>
+<code class="language-dart">
+class Person {
+  String name;
+  int age;
+
+  // 标准的构造方法，初始化了name、age
+  Person(this.name, this.age);
+
+  // 重写方法
+  @override
+  String toString() {
+    return 'name：$name，age：$age';
+  }
+}
+
+</code>
+    </pre>
+
+
+    <h3>二、构造方法。</span></h3>
+    <pre>
+<code class="language-dart">
+class Student extends Person {
+  // 下划线代表私有
+  // String? _school;
+  String? school;
+  String? city;
+  String country;
+  @override
+  String name;
+
+  // {this.city, this.country = 'China'} 代表可选参数，country设置了默认参数
+  Student(String name, int age, this.school, {this.city, this.country = 'China'})
+        // 可以初始化实例变量，不同的初始化变量之间用逗号分隔开
+      : name = '$country.$city',
+        // 初始化列表，即初始化父类的构造方法。
+        super(name, age) {
+    print('构造方法体不是必须的。');
+  }
+  // Student Student1 = Student('张三', 19, '学校', city: '深圳', country: '俄罗斯');
+  // print(Student1);
+}
+
+</code>
+    </pre>
+
+    <h3>三、命名构造方法</h3>
+    <p class="margin-bottom-mini">使用命名构造方法为类实现多个构造方法。</p>
+    <pre>
+<code class="language-dart">
+class Student extends Person {
+  String? school;
+  String? city;
+  String country;
+  @override
+  String name;
+
+  // 类名.方法名
+  Student.cover(String name, int age, this.school, {this.city = '深圳', required this.country})
+      : name = '$country.$city',
+        super(name, age) {
+    print('命名构造方法不是必须的。');
+  }
+  // Student Student2 = Student.cover('张三', 19, '学校', country: '俄罗斯');
+  // print(Student2);
+}
+
+</code>
+    </pre>
+
+    <h3>四、命名工厂构造方法</h3>
+    <pre>
+<code class="language-dart">
+class Student extends Person {
+  String? school;
+  String? city;
+  String country;
+  @override
+  String name;
+
+  Student(String name, int age, this.school, {this.city, this.country = 'China'})
+      : name = '$country.$city',
+        super(name, age);
+
+  // 命名工厂构造方法： factory[类名.方法名]
+  factory Student.stu(Student stu) {
+    return Student(stu.name, stu.age, stu.school, city: stu.city, country: stu.country);
+  }
+}
+
+</code>
+    </pre>
+
+    <h3>五、工厂构造方法</h3>
+    <pre>
+<code class="language-dart">
+class Logger {
+  static Logger? _cache;
+
+  factory Logger() {
+    return _cache ?? Logger._internal();
+  }
+
+  // 私有的命名构造方法
+  Logger._internal();
+
+  void log(String msg) {
+    print(msg);
+  }
+}
+
+</code>
+    </pre>
+
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

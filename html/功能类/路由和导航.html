@@ -113,6 +113,23 @@ appBar: AppBar(
 </code>
     </pre>
 
+    <h2>● 跳转到h5的webview</h2>
+    <pre>
+<code class="language-dart">
+Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) {
+        return WebView(                             // webview是一个Widget
+            url: model.url,                         // model是变量
+            statusBarColor: model.statusBarColor,
+            hideAppBar: model.hideAppBar,
+        );
+    }),
+);
+
+</code>
+    </pre>
+
 </article>
 <script src="../../lib/highlight/highlight.min.js"></script>
 <script src="../../lib/highlight/languages/dart.min.js"></script>

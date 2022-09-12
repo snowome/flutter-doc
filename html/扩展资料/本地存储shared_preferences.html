@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>本地存储shared_preferences</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>本地存储shared_preferences</h1>
+
+    <p>shared_preferences: ^2.0.15</p>
+
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class LocalStorage extends StatefulWidget {
+  const LocalStorage({Key? key}) : super(key: key);
+
+  @override
+  State&lt;LocalStorage&gt; createState() => _LocalStorageState();
+}
+
+class _LocalStorageState extends State&lt;LocalStorage&gt; {
+  String countString = '';
+  String localCount = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Shared Preferences')),
+        body: Column(
+          children: [
+            ElevatedButton(onPressed: _incrementCount, child: const Text('增加+1')),
+            ElevatedButton(onPressed: _getCount, child: const Text('获取')),
+            Text('countString：$countString', style: const TextStyle(fontSize: 20)),
+            Text('localCount：$localCount', style: const TextStyle(fontSize: 20)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _incrementCount() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      countString = '${countString}1';
+    });
+    int counter = (prefs.getInt('counter') ?? 0) + 1;
+    await prefs.setInt('counter', counter);
+  }
+
+  _getCount() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      localCount = (prefs.getInt('counter') ?? 0).toString();
+    });
+  }
+}
+
+
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

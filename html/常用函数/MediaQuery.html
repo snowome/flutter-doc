@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>Text</title>
+    <title>MediaQuery</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
@@ -15,21 +15,28 @@
 </head>
 <body>
 <article class="weui-article">
-    <h1>Text组件</h1>
-    <p>单一格式的文本</p>
+    <h1>MediaQuery</h1>
 
+    <h3>MediaQuery.removePadding</h3>
+    <p>一些组件如ListView和页面顶部有一个padding，这是源生组件为了考虑头部的刘海，对不同的手机作了适配。</p>
     <pre>
 <code class="language-dart">
-Text(
-    '一段Text。',
-    textAlign: TextAlign.center,
-    style: TextStyle(fontSize: 20, color: Colors.white),
-    textDirection: TextDirection.ltr, // 从左到右显示
-    fontWeight: FontWeight.bold,
-),
-
+MediaQuery.removePadding(
+    context: context,
+    removeTop: true,
+    child: ListView(),
+)
 </code>
     </pre>
+
+    <h3>MediaQuery.of(context).size</h3>
+    <p>获取屏幕的尺寸</p>
+    <pre>
+<code class="language-dart">
+width: MediaQuery.of(context).size.width / 2 - 10,
+</code>
+    </pre>
+
 </article>
 <script src="../../lib/highlight/highlight.min.js"></script>
 <script src="../../lib/highlight/languages/dart.min.js"></script>

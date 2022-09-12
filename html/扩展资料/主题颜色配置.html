@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>Text</title>
+    <title>主题颜色配置</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
@@ -15,18 +15,38 @@
 </head>
 <body>
 <article class="weui-article">
-    <h1>Text组件</h1>
-    <p>单一格式的文本</p>
+    <h1>主题颜色配置</h1>
 
     <pre>
 <code class="language-dart">
-Text(
-    '一段Text。',
-    textAlign: TextAlign.center,
-    style: TextStyle(fontSize: 20, color: Colors.white),
-    textDirection: TextDirection.ltr, // 从左到右显示
-    fontWeight: FontWeight.bold,
-),
+import 'package:flutter/material.dart';
+
+// 全局配置
+class Config {
+  /// 主题颜色
+  static const int _primaryColorValue = 0xfff5222d;
+  static const Color primaryColor = Color(_primaryColorValue);
+  static const MaterialColor primarySwatch = MaterialColor(
+    _primaryColorValue,
+    &lt;int, Color&gt;{
+      50: Color(0xfffff1f0),
+      100: Color(0xffffccc7),
+      200: Color(0xffffa39e),
+      300: Color(0xffff7875),
+      400: Color(0xffff4d4f),
+      500: Color(_primaryColorValue),
+      600: Color(0xffcf1322),
+      700: Color(0xffa8071a),
+      800: Color(0xff820014),
+      900: Color(0xff5c0011),
+    },
+  );
+  static const Color colorTextPrimary = Color(0xff1a1a1a);
+  static const Color colorTextRegular = Color(0xff313131);
+  static const Color colorTextSecondary = Color(0xff606266);
+  static const Color colorTextPlaceholder = Color(0xffc0c4cc);
+}
+
 
 </code>
     </pre>

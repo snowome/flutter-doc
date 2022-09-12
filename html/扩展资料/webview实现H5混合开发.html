@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>webview实现H5混合开发</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>webview实现H5混合开发</h1>
+
+    <h3>webview组件Widget内容</h3>
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+
+const CATCH_URLS = ['m.ctrip.com/', 'm.ctrip.com/html5/', 'm.ctrip.com/html5'];
+
+class WebView extends StatefulWidget {
+  String? url;
+  final String? statusBarColor;
+  final String? title;
+  final bool? hideAppBar;
+  final bool backForbid;    // 是否拦截网址，true则不拦截h5
+
+  WebView({
+    Key? key,
+    this.url,
+    this.statusBarColor,
+    this.title,
+    this.hideAppBar,
+    this.backForbid = false,
+  }) : super(key: key) {
+    if (url != null && url!.contains('ctrip.com')) {
+      //fix 携程H5 http://无法打开问题
+      url = url!.replaceAll("http://", 'https://');
+    }
+  }
+
+  @override
+  State&lt;WebView&gt; createState() => _WebViewState();
+}
+
+class _WebViewState extends State&lt;WebView&gt; {
+  /// 是否显示加载动画
+  bool _flag = true;
+  /// 防止重复返回
+  bool exiting = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  _isToMain(String? url) {
+    bool contain = false;
+    for (final value in CATCH_URLS) {
+      if (url?.endsWith(value) ?? false) {
+        contain = true;
+        break;
+      }
+    }
+    return contain;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    String statusBarColorStr = widget.statusBarColor ?? 'ffffff';
+    Color backButtonColor;
+    if (statusBarColorStr == 'ffffff') {
+      backButtonColor = Colors.black;
+    } else {
+      backButtonColor = Colors.white;
+    }
+    return Scaffold(
+      body: Column(
+        children: [
+          _appBar(Color(int.parse('0xff$statusBarColorStr')), backButtonColor),
+          Expanded(
+            child: InAppWebView(
+              initialOptions: InAppWebViewGroupOptions(
+                crossPlatform: InAppWebViewOptions(
+                  // debuggingEnabled: true,
+                  useShouldOverrideUrlLoading: true,    // 允许shouldOverrideUrlLoading
+                ),
+              ),
+              initialUrlRequest: URLRequest(url: Uri.parse(widget.url ?? '')),
+              onProgressChanged: (InAppWebViewController controller, int progress) {
+                if ((progress / 100) > 0.999) {
+                  setState(() {
+                    _flag = false;
+                  });
+                }
+              },
+              /// 捕获请求
+              shouldOverrideUrlLoading: (controller, navigationAction) async {
+                var uri = navigationAction.request.url!;
+                if (!exiting && !widget.backForbid && _isToMain(uri.toString())) {
+                  Navigator.pop(context);
+                  exiting = true;
+                  return NavigationActionPolicy.CANCEL;
+                }
+                return NavigationActionPolicy.ALLOW;
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _appBar(Color backgroundColor, Color backButtonColor) {
+    if (widget.hideAppBar ?? false) {
+      return Container(color: backgroundColor, height: 50); /// 50是预留的，需要根据不同的手机设定，防止刘海。
+    }
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0, 40, 0, 10),
+      color: backgroundColor,
+      child: FractionallySizedBox(
+        widthFactor: 1,
+        child: Stack(
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: Icon(Icons.close, color: backButtonColor, size: 26),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Text(
+                  widget.title ?? '',
+                  style: TextStyle(fontSize: 20, color: backButtonColor),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</code>
+    </pre>
+    死亡缠绕雕文 作者：wow阿K https://www.bilibili.com/read/cv17508598 出处：bilibili
+    灵魂 作者：wow阿K https://www.bilibili.com/read/cv17508598 出处：bilibili
+    <h3>调用方式</h3>
+    <pre>
+<code>
+onTap: () {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+            return WebView(
+                url: model.url,
+                statusBarColor: model.statusBarColor,
+                hideAppBar: model.hideAppBar,
+            );
+        }),
+    );
+},
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>
