@@ -25,7 +25,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/html/常用函数" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flutter_trip" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
@@ -93,6 +93,8 @@
       <workItem from="1662735464567" duration="1792000" />
       <workItem from="1662779838268" duration="2097000" />
       <workItem from="1662884101329" duration="2955000" />
+      <workItem from="1662973859515" duration="3506000" />
+      <workItem from="1663054476876" duration="2295000" />
     </task>
     <servers />
   </component>
@@ -104,18 +106,18 @@
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
     <state x="333" y="108" key="#Inspections/0.0.1680.1072@0.0.1680.1072" timestamp="1661415445260" />
-    <state x="571" y="231" key="FileChooserDialogImpl" timestamp="1662465610528">
+    <state x="571" y="231" key="FileChooserDialogImpl" timestamp="1663008526545">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
-    <state x="571" y="231" key="FileChooserDialogImpl/0.0.1680.1072@0.0.1680.1072" timestamp="1662465610528" />
+    <state x="571" y="231" key="FileChooserDialogImpl/0.0.1680.1072@0.0.1680.1072" timestamp="1663008526545" />
     <state width="623" height="498" key="SwitcherDM" timestamp="1662124673874">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
     <state width="623" height="498" key="SwitcherDM/0.0.1680.1072@0.0.1680.1072" timestamp="1662124673874" />
-    <state x="435" y="332" width="777" height="644" key="find.popup" timestamp="1662641044133">
+    <state x="435" y="332" width="777" height="644" key="find.popup" timestamp="1663089121581">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>
-    <state x="435" y="332" width="777" height="644" key="find.popup/0.0.1680.1072@0.0.1680.1072" timestamp="1662641044133" />
+    <state x="435" y="332" width="777" height="644" key="find.popup/0.0.1680.1072@0.0.1680.1072" timestamp="1663089121581" />
     <state x="395" y="197" width="875" height="663" key="recent.locations.popup" timestamp="1662124613550">
       <screen x="0" y="0" width="1680" height="1072" />
     </state>

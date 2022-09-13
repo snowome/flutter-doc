@@ -51,6 +51,17 @@ NotificationListener(
 )
 </code>
     </pre>
+<p>使用ListView.builder创建使用ListView：</p>
+    <pre>
+<code class="language-dart">
+ListView.builder(
+    itemCount: searchModel?.data?.length ?? 0,      // searchModel是变量
+    itemBuilder: (BuildContext context, int position) {
+        return _item(position);                     // _item生成每一项的子元素的函数
+    },
+)
+</code>
+    </pre>
 </article>
 <script src="../../lib/highlight/highlight.min.js"></script>
 <script src="../../lib/highlight/languages/dart.min.js"></script>

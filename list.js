@@ -45,6 +45,7 @@ var list = {
             ["Column", "html/布局widget（多个子元素）/Column", 1],
             ["Row", "html/布局widget（多个子元素）/Row", 1],
             ["Wrap", "html/布局widget（多个子元素）/Wrap", 1],
+            ["RichText", "html/布局widget（多个子元素）/RichText", 1],
         ],
         "响应式": [
             ["Expanded", "html/响应式/Expanded", 1],
