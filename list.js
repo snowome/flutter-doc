@@ -28,6 +28,7 @@ var list = {
             ["TextField", "html/StateFullWidget/TextField", 1],
             ["PageView", "html/StateFullWidget/PageView", 1],
             ["ExpansionTile", "html/StateFullWidget/ExpansionTile", 1],
+            ["TabBar、TabBarView", "html/StateFullWidget/TabBar、TabBarView", 1],
         ],
         "布局Widget（单个子元素）": [
             ["Opacity", "html/布局widget（单个子元素）/Opacity", 1],
@@ -39,6 +40,7 @@ var list = {
             ["Padding", "html/布局widget（单个子元素）/Padding", 1],
             ["SizedBox", "html/布局widget（单个子元素）/SizedBox", 1],
             ["FractionallySizedBox", "html/布局widget（单个子元素）/FractionallySizedBox", 1],
+            ["LimitedBox", "html/布局widget（单个子元素）/LimitedBox", 1],
         ],
         "布局Widget（多个子元素）": [
             ["Stack", "html/布局widget（多个子元素）/Stack", 1],
@@ -49,6 +51,7 @@ var list = {
         ],
         "响应式": [
             ["Expanded", "html/响应式/Expanded", 1],
+            ["Flexible", "html/响应式/Flexible", 1],
         ],
         "对话框": [
             ["showModalBottomSheet", "html/对话框/showModalBottomSheet", 1],
@@ -65,6 +68,7 @@ var list = {
             ["BorderRadius", "html/常用函数/BorderRadius", 1],
             ["Color", "html/常用函数/Color", 1],
             ["Border", "html/常用函数/Border", 1],
+            ["UnderlineTabIndicator", "html/常用函数/UnderlineTabIndicator", 1],
         ],
         "动画": [
             ["动画基础类", "html/动画/动画基础类", 1],
@@ -79,6 +83,8 @@ var list = {
             ["path-provider", "html/插件/path_provider", 1],
             ["cached-network-image", "html/插件/cached_network_image", 1],
             ["flutter-swiper-view", "html/插件/flutter_swiper_view", 1],
+            ["flutter-staggered-grid-view", "html/插件/flutter_staggered_grid_view", 1],
+
         ],
         "扩展资料": [
             ["数据类型", "html/扩展资料/数据类型", 1],

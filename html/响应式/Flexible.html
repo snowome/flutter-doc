@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="../../favicon.ico">
-    <title>Text</title>
+    <title>Flexible</title>
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/weui.css">
@@ -15,19 +15,21 @@
 </head>
 <body>
 <article class="weui-article">
-    <h1>Text组件</h1>
-    <p>单一格式的文本</p>
+    <h1>Flexible</h1>
+    <p>Flexible是一个控制Row、Column、Flex等子组件如何布局的组件。</p>
+    <p>Flexible组件可以使Row、Column、Flex等子组件在主轴方向有填充可用空间的能力(例如，Row在水平方向，Column在垂直方向)，<span class="weight danger">但是它与Expanded组件不同，它不强制子组件填充可用空间。</span></p>
+    <p>Flexible组件必须是Row、Column、Flex等组件的后裔，并且从Flexible到它封装的Row、Column、Flex的路径必须只包括StatelessWidgets或StatefulWidgets组件(不能是其他类型的组件，像RenderObjectWidgets)。</p>
 
     <pre>
 <code class="language-dart">
-Text(
-    '一段Text。',
-    textAlign: TextAlign.center,
-    style: TextStyle(fontSize: 20, color: Colors.white),
-    textDirection: TextDirection.ltr, // 从左到右显示
-    fontWeight: FontWeight.bold,
-    maxLines: 2,
-    overflow: TextOverflow.ellipsis,
+bColumn(
+    children: [
+        Container(),
+        Flexible(
+            fit: loose,     // 默认loose，尽可能大的填满剩余空间，但是可以不填满。tight: 必须强制填满剩余空间
+            child: TabBarView(),
+        ),
+    ],
 ),
 
 </code>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>flutter_staggered_grid_view</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>flutter_staggered_grid_view</h1>
+    <p>瀑布流布局插件</p>
+    <p>flutter_staggered_grid_view: ^0.6.2</p>
+    <pre>
+<code class="language-dart">
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+// 接口请求的数据
+List&lt;TravelItem&gt; travelItem = [];
+int pageIndex = 1;
+bool _loading = true;
+// 上拉加载更多的 controller
+final ScrollController _scrollController = ScrollController();
+
+@override
+void initState() {
+    _loadData();
+    _scrollController.addListener(() {
+        if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent) {
+            _loadData(loadMore: true);
+        }
+    });
+    super.initState();
+}
+
+@override
+void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+}
+RefreshIndicator(
+    onRefresh: _handleRefresh,          // 上拉刷新函数
+    child: MasonryGridView.count(
+        controller: _scrollController,  // 上拉加载更多用
+        // 每一行显示几列
+        crossAxisCount: 2,
+        itemCount: travelItem.length,
+        itemBuilder: (BuildContext context, int index) => _cardItem(
+            index: index,
+            item: travelItem[index],
+        ),
+        // mainAxisSpacing: spacing,
+        // crossAxisSpacing: spacing,
+        // physics: const NeverScrollableScrollPhysics(),
+        //本身不滚动，让外面的singlescrollview来滚动
+        // shrinkWrap: true, //收缩，让外面的singlescrollview来滚动
+    ),
+),
+
+class _cardItem extends StatelessWidget {
+    final TravelItem item;
+    final int index;
+    const _cardItem({Key? key, required this.item, required this.index}) : super(key: key);
+    @override
+    Widget build(BuildContext context) {
+        return Container(
+            child: GestureDetector(
+                onTap: () {},
+                child: Card(
+                    child: PhysicalModel(
+                        color: Colors.transparent,
+                        clipBehavior: Clip.antiAlias,
+                        borderRadius: BorderRadius.circular(5),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                                _itemImage(),
+                                Container(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(),
+                                ),
+                                Container(child: Text('文字')),
+                            ],
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    Widget _itemImage() {
+        return Stack(
+            children: [
+                Image.network(item.article.images[0].dynamicUrl),
+                Positioned(
+                    bottom: 8,
+                    left: 8,
+                    child: Container(child: Text('文字')),
+                ),
+            ],
+        );
+    }
+}
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

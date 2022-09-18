@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>TabBar、TabBarView</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>TabBar、TabBarView标签页</h1>
+    <p>需要实现：TickerProviderStateMixin</p>
+
+    <pre>
+<code class="language-dart">
+// 需要实现 TickerProviderStateMixin
+class _TravelPageState extends State&lt;TravelPage&gt; with TickerProviderStateMixin {
+  late TabController _controller;
+  List&lt;TravelTab&gt; tabs = [];
+  late TravelTabModel travelTabModel;
+
+  @override
+  void initState() {
+    _controller = TabController(length: 0, vsync: this); // vsync 需在这个类实现 TickerProviderStateMixin
+    TravelTabDao.fetch().then((TravelTabModel model) {
+      _controller = TabController(length: model.tabs.length, vsync: this);
+      setState(() {
+        tabs = model.tabs;
+        travelTabModel = model;
+      });
+    }).catchError((err) {
+      print(err);
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(
+            color: Colors.white,
+            padding: const EdgeInsets.only(top: 50),
+            child: TabBar(
+              controller: _controller,
+              // 是否可以左右滑动
+              isScrollable: true,
+              labelColor: Colors.black,
+              labelPadding: const EdgeInsets.fromLTRB(20, 0, 10, 5),
+              // tabs的指示器，即下划线
+              indicator: const UnderlineTabIndicator(
+                borderSide: BorderSide(color: Color(0xff2fcfbb), width: 3),
+                insets: EdgeInsets.only(bottom: 10),
+              ),
+              tabs: tabs.map((TravelTab tab) {
+                return Tab(
+                  text: tab.labelName,
+                );
+              }).toList(),
+            ),
+          ),
+          Flexible(
+            // TabBarView
+            child: TabBarView(
+              controller: _controller,
+              children: tabs.map((TravelTab tab) {
+                return TravelTabPage(travelurl: travelTabModel.url, groupChannelCode: tab.groupChannelCode);
+              }).toList(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>
