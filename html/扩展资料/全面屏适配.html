@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>全面屏适配</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>全面屏适配</h1>
+    <p>有两种方法：1、SafeArea。2、EdgeInsets padding = MediaQuery.of(context).padding;</p>
+    <p>另外：安卓需要单独设置长宽比。</p>
+
+    <h3>一、SafeArea组件</h3>
+    <pre>
+<code class="language-dart">
+MaterialApp(
+    title: '全面屏适配',
+    theme: ThemeData(
+        primarySwatch: Colors.blue,
+    ),
+    home: Container(
+        decoration: const BoxDecoration(color: Colors.white),
+        child: SafeArea(            // 去掉了刘海等边距
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                    Text('顶部'),
+                    Text('底部'),
+                ],
+            ),
+        ),
+    ),
+)
+
+</code>
+    </pre>
+
+    <h3>二、MediaQuery.of(context).padding</h3>
+    <pre>
+<code class="language-dart">
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'app title',
+      theme: ThemeData(primaryColor: Colors.blue, primarySwatch: Colors.blue),
+      home: const Scaffold(
+        body: HomePage(),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State&lt;HomePage&gt; createState() => _HomePageState();
+}
+
+class _HomePageState extends State&lt;HomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    // 通过MediaQuery.of(context).padding获得手机安全区域的 上边距 和 下边距。
+    EdgeInsets padding = MediaQuery.of(context).padding;
+    return Container(
+      alignment: Alignment.center,
+      // padding.top、padding.bottom正式安全区域的上边距、下边距
+      padding: EdgeInsets.fromLTRB(0, padding.top, 0, padding.bottom),
+      decoration: const BoxDecoration(color: Colors.white),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            color: Colors.blue,
+            child: const FractionallySizedBox(
+              widthFactor: 1,
+              child: Text('顶部', textAlign: TextAlign.left),
+            ),
+          ),
+          const Text('底部'),
+        ],
+      ),
+    );
+  }
+}
+
+</code>
+    </pre>
+
+    <h3>三、安卓设置长宽比：</h3>
+    <p>在文件：android\app\src\main\AndroidManifest.xml里添加如下内容：</p>
+    <pre>
+<code class="language-dart">
+       &lt;!-- Android全面屏适配，宽高比最大值 --&gt;
+       &lt;meta-data
+           android:name="android.max_aspect"
+           android:value="2.3"/&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;
+</code>
+    </pre>
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="../../favicon.ico">
+    <title>打包Android配置</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/weui.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/default.min.css">
+    <link rel="stylesheet" href="../../lib/highlight/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="../../css/page.css">
+</head>
+<body>
+<article class="weui-article">
+    <h1>打包Android配置</h1>
+
+    <h3>修改：android\app\src\main\AndroidManifest.xml文件，APP的名字</h3>
+    <pre>
+<code class="language-dart">
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.flutter_trip"&gt;
+   &lt;application
+       android:label="APP的名字"
+
+</code>
+    </pre>
+
+    <h3>修改：android\app\build.gradle文件。</h3>
+    <pre>
+<code class="language-dart">
+android {
+    // 编译版本，如果再在这个版本以下出现兼容问题，会有提示。最终代码不是以它打包的。
+    // compileSdkVersion 33
+    compileSdkVersion flutter.compileSdkVersion
+        defaultConfig {
+            // 安卓的id，即包名，即唯一标识。
+            applicationId "com.example.flutter_trip"
+            // 最低的版本号
+            minSdkVersion 17
+            // 最终打包版本
+            // targetSdkVersion flutter.targetSdkVersion
+            targetSdkVersion 33
+            // 版本号
+            // versionCode flutterVersionCode.toInteger()
+            versionCode 1
+            // 版本名
+            // versionName flutterVersionName
+            versionName '1.01'
+        }
+}
+</code>
+    </pre>
+
+    <h3>修改APP启动图标：</h3>
+    <pre>
+<code class="language-dart">
+android\app\src\main\res\mipmap-xxxhdpi\ic_launcher.png
+android\app\src\main\res\mipmap-mdpi\ic_launcher.png
+android\app\src\main\res\mipmap-xxhdpi\ic_launcher.png
+android\app\src\main\res\mipmap-hdpi\ic_launcher.png
+android\app\src\main\res\mipmap-xhdpi\ic_launcher.png
+</code>
+    </pre>
+
+    <h3>签名APP</h3>
+    <pre>
+<code class="language-dart">
+第一步：在安卓模式下运行。
+第二步：点击android studio菜单Build=>Generate Signed Bundle or APK=>勾选APK=>Next=>
+    1、Key store path因为没有，所以选择Create new...
+       a、Key store path选择证书的路径。这里选择了：android\key_store.jks
+       b、填写：Password、Confirm
+       Key-------------------------------------------------
+       c、Alias：这里填写的flutter_key
+       d、填写：Password、Confirm
+       Certificate----------------证书的名字--------------------------
+       First and Last Name：这里填写了devio
+       Orginizational Unit：这里填写了devio
+       Orginizational：这里填写了devio.org
+       City or Locality：shenzhen
+       State or Province：guangdong
+       Country Code：cn
+       =>点击ok按钮，生成了证书文件key_store.jks
+第三步：在android目录下新建 android\key.properties文件，文件内容如下：
+storePassword=123456
+keyPassword=123456
+keyAlias=flutter_key
+// key.properties文件和key_store.jks同样的路径却有../是因为路径是基于：android/app/build.gradle文件的位置
+storeFile=../key_store.jks
+
+</code>
+    </pre>
+
+    <h3>配置android/app/build.gradle文件</h3>
+    <pre>
+<code class="language-dart">
+// 第一步：
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+// 在android节点前添加上述代码。
+// android {
+// ...
+// }
+
+// 第二步：
+// 将以下内容替换为：
+// buildTypes {
+//    release {
+//        // TODO: Add your own signing config for the release build.
+//        // Signing with the debug keys for now, so `flutter run --release` works.
+//        signingConfig signingConfigs.debug
+//    }
+// }
+
+signingConfigs {
+    release {
+        keyAlias keystoreProperties['keyAlias']
+        keyPassword keystoreProperties['keyPassword']
+        storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+        storePassword keystoreProperties['storePassword']
+    }
+}
+buildTypes {
+    release {
+        signingConfig signingConfigs.release
+    }
+}
+</code>
+    </pre>
+
+    <h3>打包、安装</h3>
+    <pre>
+<code class="language-dart">
+进入项目主目录，运行打包命名：flutter build apk --split-per-abi
+进入项目主目录，运行打包命名：flutter install
+
+</code>
+    </pre>
+
+</article>
+<script src="../../lib/highlight/highlight.min.js"></script>
+<script src="../../lib/highlight/languages/dart.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>
